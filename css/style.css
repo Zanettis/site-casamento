@@ -553,24 +553,156 @@ a:hover { color: var(--terracotta); }
 .presentes-section { text-align: center; }
 .presentes-section .section__head { max-width: 720px; margin-left: auto; margin-right: auto; }
 .presentes-grid {
-  max-width: 720px;
+  max-width: 1180px;
   margin: 48px auto 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: left;
 }
+
 .presentes-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
-  padding: 40px 24px;
 }
+
+.presentes-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px;
+}
+
+.presentes-card__category {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
 .presentes-card__title {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-weight: 500;
+  font-size: 22px;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin: 0 0 8px;
 }
-.presentes-card__text { font-size: 13px; color: var(--ink-muted); }
+
+.presentes-card__text {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.presentes-card__amounts { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+.presentes-card__amounts[hidden] { display: none; }
+
+.presentes-card__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.presentes-card__chip {
+  padding: 8px 14px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: 1px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.presentes-card__chip.is-active { background: var(--green); color: var(--cream); }
+
+.presentes-card__custom { gap: 6px; }
+.presentes-card__custom label { font-size: 10px; }
+.presentes-card__custom input {
+  border: none;
+  border-bottom: 1px solid rgba(43, 36, 29, 0.25);
+  background: transparent;
+  padding: 8px 2px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--ink);
+  outline: none;
+  width: 100%;
+}
+.presentes-card__custom input:focus { border-color: var(--green); }
+
+.presentes-card__cta {
+  padding: 14px;
+  background: var(--green);
+  color: var(--cream);
+  border: none;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.presentes-card__cta:hover { background: var(--green-light); }
+.presentes-card__cta--error { background: var(--terracotta); }
+.presentes-card__cta--error:hover { background: var(--terracotta-light); }
+
+.presentes-card__pix {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.presentes-card__pix[hidden] { display: none; }
+
+.presentes-card__qr { max-width: 200px; margin: 0 auto 14px; }
+.presentes-card__qr svg { display: block; width: 100%; height: auto; }
+
+.presentes-card__amount-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 18px;
+}
+
+.presentes-card__copy-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.presentes-card__copy-row { display: flex; gap: 8px; }
+
+.presentes-card__copy-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(43, 36, 29, 0.25);
+  background: transparent;
+  padding: 10px;
+  font-size: 11px;
+  font-family: var(--font-body), monospace;
+  color: var(--ink-muted);
+}
+
+.presentes-card__copy-btn {
+  flex: none;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.presentes-card__copy-btn:hover { background: var(--green); color: var(--cream); }
+
+.presentes-card__copy-feedback { font-size: 12px; color: var(--green); margin: 10px 0 0; }
+.presentes-card__copy-feedback[hidden] { display: none; }
 
 /* ===================== Galeria ===================== */
 .galeria-section { background: var(--bg-alt); }

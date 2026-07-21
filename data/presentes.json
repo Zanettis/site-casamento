@@ -1,0 +1,53 @@
+[
+  {
+    "id": "lua-de-mel",
+    "categoria": "Lua de mel",
+    "titulo": "Lua de mel em Ilhabela",
+    "descricao": "Ajudem a pagar uma noite especial na nossa lua de mel.",
+    "tipo": "flexivel",
+    "valoresSugeridos": [50, 100, 250, 500],
+    "valorMinimo": 20
+  },
+  {
+    "id": "jantar-romantico",
+    "categoria": "Experiências",
+    "titulo": "Jantar romântico",
+    "descricao": "Um jantar especial para comemorarmos o início da vida a dois.",
+    "tipo": "fixo",
+    "valor": 180
+  },
+  {
+    "id": "passeio-de-barco",
+    "categoria": "Experiências",
+    "titulo": "Passeio de barco pela ilha",
+    "descricao": "Um dia inteiro navegando pelas praias de Ilhabela.",
+    "tipo": "fixo",
+    "valor": 250
+  },
+  {
+    "id": "casa-nova",
+    "categoria": "Casa nova",
+    "titulo": "Ajude a mobiliar nossa casa",
+    "descricao": "Cada contribuição nos ajuda a montar o nosso novo lar, do jeito que a gente sempre sonhou.",
+    "tipo": "flexivel",
+    "valoresSugeridos": [50, 100, 200, 400],
+    "valorMinimo": 20
+  },
+  {
+    "id": "jogo-de-panelas",
+    "categoria": "Casa nova",
+    "titulo": "Jogo de panelas",
+    "descricao": "Pra gente cozinhar junto nos primeiros anos de casados.",
+    "tipo": "fixo",
+    "valor": 320
+  },
+  {
+    "id": "cota-livre",
+    "categoria": "Contribuição livre",
+    "titulo": "Escolha o valor",
+    "descricao": "Se preferir, contribua com o valor que fizer sentido pra você — toda ajuda é bem-vinda.",
+    "tipo": "flexivel",
+    "valoresSugeridos": [30, 50, 100, 150],
+    "valorMinimo": 10
+  }
+]

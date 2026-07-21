@@ -182,4 +182,183 @@
       rsvpSuccess.classList.add("visible");
     });
   }
+
+  // ---------- Presentes: contribuição via Pix ----------
+  //
+  // TROCAR AQUI: preencha com a chave Pix real de vocês antes de publicar o
+  // site. Recomendamos usar uma chave aleatória (gerada no próprio app do
+  // banco) em vez do CPF, já que essa chave fica visível no código-fonte
+  // público do site. "nome" e "cidade" seguem o padrão do Banco Central:
+  // sem acentos, nome com até 25 caracteres, cidade com até 15 caracteres.
+  const PIX_CONFIG = {
+    chave: "TROCAR-AQUI-CHAVE-PIX",
+    nome: "Marina e Pedro",
+    cidade: "ILHABELA",
+  };
+
+  const normalizePixText = (str, maxLen) =>
+    (str || "")
+      .normalize("NFD")
+      .replace(/[^\x20-\x7E]/g, "")
+      .slice(0, maxLen)
+      .trim();
+
+  const pixTlv = (id, value) =>
+    `${id}${String(value.length).padStart(2, "0")}${value}`;
+
+  const pixCrc16 = (payload) => {
+    let crc = 0xffff;
+    for (let i = 0; i < payload.length; i++) {
+      crc ^= payload.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc =
+          (crc & 0x8000) !== 0 ? ((crc << 1) ^ 0x1021) & 0xffff : (crc << 1) & 0xffff;
+      }
+    }
+    return crc.toString(16).toUpperCase().padStart(4, "0");
+  };
+
+  const buildPixPayload = (valor, descricao) => {
+    const nome = normalizePixText(PIX_CONFIG.nome, 25) || "RECEBEDOR";
+    const cidade = normalizePixText(PIX_CONFIG.cidade, 15) || "CIDADE";
+    const info = normalizePixText(descricao, 35);
+
+    const merchantAccount =
+      pixTlv("00", "br.gov.bcb.pix") +
+      pixTlv("01", PIX_CONFIG.chave) +
+      (info ? pixTlv("02", info) : "");
+
+    const additionalData = pixTlv("05", "***");
+
+    const payload =
+      pixTlv("00", "01") +
+      pixTlv("01", "11") +
+      pixTlv("26", merchantAccount) +
+      pixTlv("52", "0000") +
+      pixTlv("53", "986") +
+      pixTlv("54", Number(valor).toFixed(2)) +
+      pixTlv("58", "BR") +
+      pixTlv("59", nome) +
+      pixTlv("60", cidade) +
+      pixTlv("62", additionalData) +
+      "6304";
+
+    return payload + pixCrc16(payload);
+  };
+
+  const formatBRL = (valor) =>
+    Number(valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+  const presentesGrid = document.getElementById("presentes-grid");
+  const presentesTemplate = document.getElementById("presentes-card-template");
+
+  const renderPresenteCard = (presente) => {
+    const node = presentesTemplate.content.cloneNode(true);
+    const card = node.querySelector(".presentes-card");
+
+    card.querySelector(".presentes-card__photo span").textContent =
+      presente.categoria || "presente";
+    card.querySelector(".presentes-card__category").textContent =
+      presente.categoria || "";
+    card.querySelector(".presentes-card__title").textContent = presente.titulo;
+    card.querySelector(".presentes-card__text").textContent =
+      presente.descricao || "";
+
+    const amountsWrap = card.querySelector(".presentes-card__amounts");
+    const chipsWrap = card.querySelector(".presentes-card__chips");
+    const customInput = card.querySelector(".presentes-card__custom input");
+    const cta = card.querySelector(".presentes-card__cta");
+    const pixWrap = card.querySelector(".presentes-card__pix");
+    const qrWrap = card.querySelector(".presentes-card__qr");
+    const amountLabel = card.querySelector(".presentes-card__amount-label");
+    const copyInput = card.querySelector(".presentes-card__copy-input");
+    const copyBtn = card.querySelector(".presentes-card__copy-btn");
+    const copyFeedback = card.querySelector(".presentes-card__copy-feedback");
+
+    const ctaDefaultText =
+      presente.tipo === "fixo"
+        ? `Presentear · ${formatBRL(presente.valor)}`
+        : "Escolher valor e presentear";
+    cta.textContent = ctaDefaultText;
+
+    let valorEscolhido = presente.tipo === "fixo" ? presente.valor : null;
+
+    if (presente.tipo === "flexivel") {
+      amountsWrap.hidden = false;
+
+      (presente.valoresSugeridos || []).forEach((valor) => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "presentes-card__chip";
+        chip.textContent = formatBRL(valor);
+        chip.addEventListener("click", () => {
+          valorEscolhido = valor;
+          customInput.value = "";
+          chipsWrap
+            .querySelectorAll(".presentes-card__chip")
+            .forEach((b) => b.classList.remove("is-active"));
+          chip.classList.add("is-active");
+        });
+        chipsWrap.appendChild(chip);
+      });
+
+      customInput.addEventListener("input", () => {
+        chipsWrap
+          .querySelectorAll(".presentes-card__chip")
+          .forEach((b) => b.classList.remove("is-active"));
+        valorEscolhido = customInput.value ? Number(customInput.value) : null;
+      });
+    }
+
+    cta.addEventListener("click", () => {
+      const minimo = presente.valorMinimo || 1;
+
+      if (!valorEscolhido || valorEscolhido < minimo) {
+        cta.classList.add("presentes-card__cta--error");
+        cta.textContent = `Escolha um valor de pelo menos ${formatBRL(minimo)}`;
+        return;
+      }
+
+      cta.classList.remove("presentes-card__cta--error");
+      cta.textContent = ctaDefaultText;
+
+      const payload = buildPixPayload(valorEscolhido, presente.titulo);
+      const qr = qrcode(0, "M");
+      qr.addData(payload);
+      qr.make();
+
+      qrWrap.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 2, scalable: true });
+      amountLabel.textContent = `Valor: ${formatBRL(valorEscolhido)}`;
+      copyInput.value = payload;
+      copyFeedback.hidden = true;
+      pixWrap.hidden = false;
+      pixWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    copyBtn.addEventListener("click", () => {
+      copyInput.select();
+      navigator.clipboard
+        .writeText(copyInput.value)
+        .then(() => {
+          copyFeedback.textContent = "Código copiado!";
+          copyFeedback.hidden = false;
+        })
+        .catch(() => {
+          copyFeedback.textContent = "Selecione e copie manualmente.";
+          copyFeedback.hidden = false;
+        });
+    });
+
+    presentesGrid.appendChild(node);
+  };
+
+  if (presentesGrid && presentesTemplate && typeof qrcode === "function") {
+    fetch("data/presentes.json")
+      .then((res) => res.json())
+      .then((presentes) => presentes.forEach(renderPresenteCard))
+      .catch(() => {
+        presentesGrid.textContent =
+          "Não foi possível carregar a lista de presentes no momento.";
+      });
+  }
 })();

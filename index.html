@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marina &amp; Pedro — 20.02.2027</title>
+<meta name="description" content="Site do casamento de Marina e Pedro — 20 de Fevereiro de 2027, Praia do Curral, Ilhabela">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="#inicio" class="nav__logo">M &amp; P</a>
+  <div class="nav__links">
+    <a href="#historia">História</a>
+    <a href="#data-local">Evento</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#hospedagem">Hospedagem</a>
+    <a href="#presentes">Presentes</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="inicio" class="hero">
+  <video class="hero__bg" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow reveal">Estamos nos casando</p>
+    <h1 class="hero__names reveal">Marina<span class="hero__amp"> &amp; </span>Pedro</h1>
+    <p class="hero__date reveal">20 de Fevereiro, 2027 &nbsp;—&nbsp; Praia do Curral, Ilhabela</p>
+  </div>
+
+  <a class="hero__scroll-cue" href="#historia">
+    <span>role</span>
+    <span class="hero__scroll-line"></span>
+  </a>
+</section>
+
+<div class="page">
+
+  <!-- ============ QUOTE ============ -->
+  <section class="quote">
+    <p class="quote__text reveal">"Mientras uno está vivo, uno debe amar lo más que pueda"</p>
+    <p class="quote__sign reveal">Marina &amp; Pedro</p>
+  </section>
+
+  <!-- ============ NOSSA HISTÓRIA ============ -->
+  <section id="historia" class="section historia">
+    <div class="section__head">
+      <p class="eyebrow reveal">Nossa história</p>
+      <h2 class="section__title reveal">Como tudo começou</h2>
+    </div>
+
+    <div class="story-grid">
+      <div class="ph ph--cream photo-placeholder reveal" style="aspect-ratio:4/5;">
+        <span>foto — primeiro encontro</span>
+      </div>
+      <div class="reveal">
+        <h3 class="story-block__title">Um encontro sem hora marcada</h3>
+        <p class="story-block__text">Foi numa dessas coincidências que a vida gosta de guardar — uma apresentação de amigos em comum e uma conversa que não quis terminar. De lá pra cá, viramos parceiros de viagens, de silêncios e de planos grandes.</p>
+      </div>
+    </div>
+
+    <div class="story-grid story-grid--reverse">
+      <div class="reveal story-order-2">
+        <h3 class="story-block__title">O convite</h3>
+        <p class="story-block__text">Escolhemos Ilhabela porque é onde nos sentimos mais nós mesmos — o mar, o verde da mata e o tempo que desacelera. Queremos celebrar esse novo capítulo com quem caminhou com a gente até aqui.</p>
+      </div>
+      <div class="ph ph--green photo-placeholder reveal story-order-1" style="aspect-ratio:4/5;">
+        <span>foto — pedido de casamento</span>
+      </div>
+    </div>
+
+    <div class="story-countdown reveal" id="countdown" data-wedding-date="2027-02-20T16:00:00">
+      <p class="story-countdown__label">Faltam para o grande dia</p>
+      <div class="countdown">
+        <div class="countdown__item">
+          <span class="countdown__number" data-days>00</span>
+          <span class="countdown__label">dias</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__number" data-hours>00</span>
+          <span class="countdown__label">horas</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__number" data-minutes>00</span>
+          <span class="countdown__label">min</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__number" data-seconds>00</span>
+          <span class="countdown__label">seg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DATA E LOCAL ============ -->
+  <section id="data-local" class="section event-section">
+    <div class="section__head">
+      <p class="eyebrow eyebrow--peach reveal">Save the date</p>
+      <h2 class="section__title section__title--light reveal">20 de Fevereiro de 2027</h2>
+      <p class="event-section__place reveal">Casa de Canoa · Praia do Curral, Ilhabela, SP</p>
+    </div>
+
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <div class="info-card__number">16h</div>
+        <div class="info-card__label">Cerimônia</div>
+        <div class="info-card__text">Casa de Canoa, à beira-mar</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card__number">18h</div>
+        <div class="info-card__label">Recepção</div>
+        <div class="info-card__text">Casa de Canoa, jardim tropical</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card__number">Linho</div>
+        <div class="info-card__label">Traje</div>
+        <div class="info-card__text">Elegante tropical, tons terrosos</div>
+      </div>
+    </div>
+
+    <div class="event-map reveal">
+      <iframe
+        class="event-map__frame"
+        src="https://www.google.com/maps?q=Casa%20de%20Canoa%2C%20Av.%20Jos%C3%A9%20Pacheco%20do%20Nascimento%2C%208124%20-%20Praia%20do%20Curral%2C%20Ilhabela%20-%20SP%2C%2011630-000&output=embed"
+        title="Mapa — Casa de Canoa, Praia do Curral, Ilhabela"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+    <p class="event-map__address">Av. José Pacheco do Nascimento, 8124 — Praia do Curral, Ilhabela - SP, 11630-000</p>
+  </section>
+
+  <!-- ============ RSVP ============ -->
+  <section id="rsvp" class="section rsvp">
+    <div class="section__head">
+      <p class="eyebrow reveal">Confirmação</p>
+      <h2 class="section__title reveal">Você vem?</h2>
+      <p class="section__text reveal">Por favor, confirme sua presença até 20 de dezembro de 2026.</p>
+    </div>
+
+    <div class="rsvp-success reveal" id="rsvp-success" hidden>
+      <div class="rsvp-success__check">✓</div>
+      <div class="rsvp-success__title">Presença confirmada!</div>
+      <p class="rsvp-success__text">Obrigado, <span id="rsvp-success-name"></span>. Mal podemos esperar para celebrar com você.</p>
+    </div>
+
+    <!--
+      TROCAR AQUI: este formulário envia os dados para um Google Form.
+      1. Crie o formulário em forms.google.com com os campos: Nome, E-mail,
+         Presença (sim/não), Acompanhantes, Mensagem.
+      2. Clique em Enviar > ícone de link, copie a URL e troque ".../viewform"
+         por ".../formResponse" em GOOGLE_FORM_CONFIG.actionUrl (js/main.js).
+      3. Para achar os IDs "entry.XXXXXXX" de cada campo: abra o formulário,
+         inspecione o HTML (ou use a opção "Obter link para pré-preencher")
+         e copie o "name" de cada input em GOOGLE_FORM_CONFIG.entries.
+    -->
+    <form class="rsvp-form reveal" id="rsvp-form">
+      <div class="field">
+        <label for="rsvp-name">Nome completo</label>
+        <input type="text" id="rsvp-name" name="name" required placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label for="rsvp-email">E-mail</label>
+        <input type="email" id="rsvp-email" name="email" required placeholder="voce@email.com">
+      </div>
+
+      <div class="field">
+        <label>Você vai comparecer?</label>
+        <div class="attend-toggle">
+          <button type="button" class="attend-toggle__btn" data-attend="sim">Sim, estarei lá</button>
+          <button type="button" class="attend-toggle__btn" data-attend="nao">Não poderei ir</button>
+        </div>
+        <input type="hidden" id="rsvp-attending" name="attending" required>
+      </div>
+
+      <div class="field">
+        <label for="rsvp-guests">Número de acompanhantes</label>
+        <select id="rsvp-guests" name="guests">
+          <option value="0">Somente eu</option>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+          <option value="3">+3</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="rsvp-message">Mensagem para os noivos (opcional)</label>
+        <textarea id="rsvp-message" name="message" rows="3" placeholder="Deixe um recado..."></textarea>
+      </div>
+
+      <button type="submit" class="rsvp-form__submit">Confirmar presença</button>
+    </form>
+  </section>
+
+  <!-- ============ HOSPEDAGEM ============ -->
+  <section id="hospedagem" class="section hospedagem-section">
+    <div class="section__head">
+      <p class="eyebrow reveal">Hospedagem</p>
+      <h2 class="section__title reveal">Onde ficar</h2>
+      <p class="section__text reveal">Reunimos algumas opções perto da Praia do Curral para tornar sua estadia em Ilhabela ainda mais tranquila.</p>
+    </div>
+
+    <div class="hospedagem-highlight reveal">
+      <div class="hospedagem-highlight__label">Onde os noivos ficam</div>
+      <div class="hospedagem-highlight__name">Casa di Sirena Ilhabela</div>
+      <div class="hospedagem-highlight__address">Av. José Pacheco do Nascimento, 8124 — Praia do Curral, Ilhabela - SP, 11630-000</div>
+      <a class="hospedagem-highlight__link" href="https://www.google.com/maps/search/?api=1&query=Casa%20di%20Sirena%20Ilhabela%2C%20Av.%20Jos%C3%A9%20Pacheco%20do%20Nascimento%2C%208124%20-%20Praia%20do%20Curral%2C%20Ilhabela%20-%20SP%2C%2011630-000" target="_blank" rel="noopener">Ver no mapa &rarr;</a>
+    </div>
+
+    <div class="hospedagem-grid">
+      <div class="hospedagem-card reveal">
+        <div class="ph ph--cream photo-placeholder" style="aspect-ratio:4/3;"><span>foto — pousada mar verde</span></div>
+        <div class="hospedagem-card__body">
+          <h3>Pousada Mar Verde</h3>
+          <p>Charmosa e aconchegante, a 5 minutos a pé da praia.</p>
+          <div class="hospedagem-card__distance">0,4 km da cerimônia</div>
+        </div>
+      </div>
+      <div class="hospedagem-card reveal">
+        <div class="ph ph--cream photo-placeholder" style="aspect-ratio:4/3;"><span>foto — hotel costa ilha</span></div>
+        <div class="hospedagem-card__body">
+          <h3>Hotel Costa Ilha</h3>
+          <p>Conforto e vista para o mar, com café da manhã incluso.</p>
+          <div class="hospedagem-card__distance">1,2 km da cerimônia</div>
+        </div>
+      </div>
+      <div class="hospedagem-card reveal">
+        <div class="ph ph--cream photo-placeholder" style="aspect-ratio:4/3;"><span>foto — vila das palmeiras</span></div>
+        <div class="hospedagem-card__body">
+          <h3>Vila das Palmeiras</h3>
+          <p>Casas independentes em meio ao jardim tropical.</p>
+          <div class="hospedagem-card__distance">2 km da cerimônia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LISTA DE PRESENTES ============ -->
+  <section id="presentes" class="section presentes-section">
+    <div class="section__head">
+      <p class="eyebrow reveal">Presentes</p>
+      <h2 class="section__title reveal">Lista de presentes</h2>
+      <p class="section__text reveal">Sua presença já é o maior presente. Mas se quiser nos ajudar a começar essa nova fase, preparamos algumas opções.</p>
+    </div>
+
+    <div class="presentes-grid reveal">
+      <!-- TROCAR AQUI: coloque o link real da lista física de presentes -->
+      <a href="#" class="presentes-card">
+        <div class="presentes-card__title">Lista física</div>
+        <div class="presentes-card__text">Ver sugestões de presentes</div>
+      </a>
+      <!-- TROCAR AQUI: coloque o link/dados reais da contribuição via Pix -->
+      <a href="#" class="presentes-card">
+        <div class="presentes-card__title">Contribuição via Pix</div>
+        <div class="presentes-card__text">Ajude nossa lua de mel</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ GALERIA ============ -->
+  <section id="galeria" class="section galeria-section">
+    <div class="section__head">
+      <p class="eyebrow reveal">Galeria</p>
+      <h2 class="section__title reveal">Momentos</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="ph ph--green photo-placeholder reveal" style="aspect-ratio:1;"><span>ensaio pré-wedding</span></div>
+      <div class="ph ph--cream photo-placeholder reveal" style="aspect-ratio:1;"><span>praia do curral</span></div>
+      <div class="ph ph--terracotta photo-placeholder reveal" style="aspect-ratio:1;"><span>coqueiros</span></div>
+      <div class="ph ph--dark photo-placeholder reveal" style="aspect-ratio:1;"><span>pôr do sol em ilhabela</span></div>
+      <div class="ph ph--cream photo-placeholder reveal" style="aspect-ratio:1;"><span>noivos</span></div>
+      <div class="ph ph--green photo-placeholder reveal" style="aspect-ratio:1;"><span>flores tropicais</span></div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="section faq-section">
+    <div class="section__head">
+      <p class="eyebrow reveal">Dúvidas</p>
+      <h2 class="section__title reveal">Perguntas frequentes</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-item__question" type="button">
+          <span>Posso levar meus filhos?</span>
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <p>Adoramos as crianças, mas para celebrarmos com tranquilidade à beira-mar, a festa será restrita a maiores de 14 anos.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" type="button">
+          <span>Qual o traje ideal?</span>
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <p>Elegante tropical: tecidos leves como linho e algodão, em tons terrosos, verdes e areia. Evite branco e salto fino — a cerimônia será na areia.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" type="button">
+          <span>Como chego até a Praia do Curral?</span>
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <p>Disponibilizaremos transporte saindo do centro de Ilhabela às 15h. O ponto de encontro será enviado por e-mail próximo à data.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" type="button">
+          <span>Posso levar acompanhante?</span>
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <p>Sim! Basta indicar no formulário de RSVP o número de acompanhantes ao confirmar sua presença.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" type="button">
+          <span>Haverá opções vegetarianas?</span>
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <p>Sim, o cardápio terá opções vegetarianas e veganas. Nos avise sobre restrições alimentares na mensagem do RSVP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <p class="footer__names">M &amp; P</p>
+  <p class="footer__date">20 · 02 · 2027 — Ilhabela, SP</p>
+  <p class="footer__thanks">Feito com carinho para o nosso grande dia</p>
+</footer>
+
+<!-- iframe oculto usado para enviar o RSVP ao Google Forms sem sair da página -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+
+<script src="js/main.js"></script>
+</body>
+</html>

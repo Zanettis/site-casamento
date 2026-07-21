@@ -249,20 +249,72 @@
   const formatBRL = (valor) =>
     Number(valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
+  const gerarAgradecimento = (presente) =>
+    presente.agradecimento ||
+    `Obrigado por ajudar a realizar "${presente.titulo}"! Isso significa muito pra gente.`;
+
+  const indiceSugerido = (presente) =>
+    Number.isInteger(presente.valorSugeridoIndex)
+      ? presente.valorSugeridoIndex
+      : Math.max(0, (presente.valoresSugeridos || []).length - 2);
+
+  const aplicarFoto = (card, presente, photoSelector) => {
+    if (!presente.imagem) return;
+
+    const placeholder = card.querySelector(photoSelector);
+    if (!placeholder) return;
+
+    const img = document.createElement("img");
+    img.className = photoSelector.slice(1);
+    img.src = presente.imagem;
+    img.alt = presente.titulo;
+    img.loading = "lazy";
+    img.style.aspectRatio = placeholder.style.aspectRatio;
+    img.style.width = "100%";
+    img.style.display = "block";
+    img.style.objectFit = "cover";
+    img.onerror = () => img.replaceWith(placeholder);
+
+    placeholder.replaceWith(img);
+  };
+
+  const presentesProgress = document.getElementById("presentes-progress");
+
+  const renderProgresso = (progresso) => {
+    if (!presentesProgress || !progresso || !progresso.meta) return;
+
+    const pct = Math.min(
+      100,
+      Math.max(0, (progresso.arrecadado / progresso.meta) * 100)
+    );
+
+    presentesProgress.querySelector(".presentes-progress__fill").style.width = `${pct}%`;
+    presentesProgress.querySelector(".presentes-progress__text").textContent =
+      `${formatBRL(progresso.arrecadado)} arrecadados de ${formatBRL(progresso.meta)}`;
+    presentesProgress.hidden = false;
+  };
+
   const presentesGrid = document.getElementById("presentes-grid");
-  const presentesTemplate = document.getElementById("presentes-card-template");
+  const presentesCardTemplate = document.getElementById("presentes-card-template");
+  const presentesHeroContainer = document.getElementById("presentes-hero");
+  const presentesHeroTemplate = document.getElementById("presentes-hero-template");
 
-  const renderPresenteCard = (presente) => {
-    const node = presentesTemplate.content.cloneNode(true);
-    const card = node.querySelector(".presentes-card");
+  const renderPresente = (presente, { template, container, photoSelector, titleSelector, textSelector }) => {
+    const node = template.content.cloneNode(true);
+    const card = node.querySelector(".presentes-card, .presentes-hero");
 
-    card.querySelector(".presentes-card__photo span").textContent =
-      presente.categoria || "presente";
+    aplicarFoto(card, presente, photoSelector);
+
+    const photoSpan = card.querySelector(`${photoSelector} span`);
+    if (photoSpan) photoSpan.textContent = presente.categoria || "presente";
+
     card.querySelector(".presentes-card__category").textContent =
       presente.categoria || "";
-    card.querySelector(".presentes-card__title").textContent = presente.titulo;
-    card.querySelector(".presentes-card__text").textContent =
-      presente.descricao || "";
+    card.querySelector(titleSelector).textContent = presente.titulo;
+    card.querySelector(textSelector).textContent = presente.descricao || "";
+
+    const whyEl = card.querySelector(".presentes-hero__why");
+    if (whyEl) whyEl.textContent = presente.porque || "";
 
     const amountsWrap = card.querySelector(".presentes-card__amounts");
     const chipsWrap = card.querySelector(".presentes-card__chips");
@@ -271,26 +323,39 @@
     const pixWrap = card.querySelector(".presentes-card__pix");
     const qrWrap = card.querySelector(".presentes-card__qr");
     const amountLabel = card.querySelector(".presentes-card__amount-label");
+    const thanksEl = card.querySelector(".presentes-card__thanks");
     const copyInput = card.querySelector(".presentes-card__copy-input");
     const copyBtn = card.querySelector(".presentes-card__copy-btn");
     const copyFeedback = card.querySelector(".presentes-card__copy-feedback");
 
-    const ctaDefaultText =
-      presente.tipo === "fixo"
-        ? `Presentear · ${formatBRL(presente.valor)}`
-        : "Escolher valor e presentear";
-    cta.textContent = ctaDefaultText;
-
     let valorEscolhido = presente.tipo === "fixo" ? presente.valor : null;
+
+    const atualizarRotuloCta = () => {
+      cta.textContent =
+        presente.tipo === "fixo"
+          ? `Presentear · ${formatBRL(presente.valor)}`
+          : valorEscolhido
+          ? `Presentear · ${formatBRL(valorEscolhido)}`
+          : "Escolher valor e presentear";
+    };
 
     if (presente.tipo === "flexivel") {
       amountsWrap.hidden = false;
 
-      (presente.valoresSugeridos || []).forEach((valor) => {
+      const valores = presente.valoresSugeridos || [];
+      const sugeridoIdx = indiceSugerido(presente);
+
+      valores.forEach((valor, idx) => {
         const chip = document.createElement("button");
         chip.type = "button";
         chip.className = "presentes-card__chip";
         chip.textContent = formatBRL(valor);
+
+        if (idx === sugeridoIdx) {
+          chip.classList.add("is-suggested", "is-active");
+          valorEscolhido = valor;
+        }
+
         chip.addEventListener("click", () => {
           valorEscolhido = valor;
           customInput.value = "";
@@ -298,6 +363,7 @@
             .querySelectorAll(".presentes-card__chip")
             .forEach((b) => b.classList.remove("is-active"));
           chip.classList.add("is-active");
+          atualizarRotuloCta();
         });
         chipsWrap.appendChild(chip);
       });
@@ -307,8 +373,11 @@
           .querySelectorAll(".presentes-card__chip")
           .forEach((b) => b.classList.remove("is-active"));
         valorEscolhido = customInput.value ? Number(customInput.value) : null;
+        atualizarRotuloCta();
       });
     }
+
+    atualizarRotuloCta();
 
     cta.addEventListener("click", () => {
       const minimo = presente.valorMinimo || 1;
@@ -320,7 +389,7 @@
       }
 
       cta.classList.remove("presentes-card__cta--error");
-      cta.textContent = ctaDefaultText;
+      atualizarRotuloCta();
 
       const payload = buildPixPayload(valorEscolhido, presente.titulo);
       const qr = qrcode(0, "M");
@@ -329,6 +398,7 @@
 
       qrWrap.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 2, scalable: true });
       amountLabel.textContent = `Valor: ${formatBRL(valorEscolhido)}`;
+      if (thanksEl) thanksEl.textContent = gerarAgradecimento(presente);
       copyInput.value = payload;
       copyFeedback.hidden = true;
       pixWrap.hidden = false;
@@ -349,16 +419,72 @@
         });
     });
 
-    presentesGrid.appendChild(node);
+    container.appendChild(node);
   };
 
-  if (presentesGrid && presentesTemplate && typeof qrcode === "function") {
+  const renderPresenteCard = (presente) =>
+    renderPresente(presente, {
+      template: presentesCardTemplate,
+      container: presentesGrid,
+      photoSelector: ".presentes-card__photo",
+      titleSelector: ".presentes-card__title",
+      textSelector: ".presentes-card__text",
+    });
+
+  const renderPresenteHero = (presente) =>
+    renderPresente(presente, {
+      template: presentesHeroTemplate,
+      container: presentesHeroContainer,
+      photoSelector: ".presentes-hero__photo",
+      titleSelector: ".presentes-hero__title",
+      textSelector: ".presentes-hero__text",
+    });
+
+  if (presentesGrid && presentesCardTemplate && typeof qrcode === "function") {
     fetch("data/presentes.json")
       .then((res) => res.json())
-      .then((presentes) => presentes.forEach(renderPresenteCard))
+      .then((data) => {
+        renderProgresso(data.progresso);
+
+        const presentes = data.presentes || [];
+        const presenteDestaque = presentes.find((p) => p.destaque);
+        const presentesRegulares = presentes.filter((p) => !p.destaque);
+
+        if (presenteDestaque && presentesHeroContainer && presentesHeroTemplate) {
+          renderPresenteHero(presenteDestaque);
+        }
+        presentesRegulares.forEach(renderPresenteCard);
+      })
       .catch(() => {
         presentesGrid.textContent =
           "Não foi possível carregar a lista de presentes no momento.";
       });
+  }
+
+  // ---------- Presentes: botão fixo "Presentear" ----------
+  const presentearFloater = document.getElementById("presentear-floater");
+  const presentesSection = document.getElementById("presentes");
+
+  if (presentearFloater && hero && presentesSection) {
+    let floaterTicking = false;
+
+    const updateFloater = () => {
+      const pastHero = window.scrollY > hero.offsetHeight;
+      const rect = presentesSection.getBoundingClientRect();
+      const inPresentesView = rect.top < window.innerHeight && rect.bottom > 0;
+      presentearFloater.hidden = !pastHero || inPresentesView;
+      floaterTicking = false;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!floaterTicking) {
+          window.requestAnimationFrame(updateFloater);
+          floaterTicking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 })();

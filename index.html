@@ -21,8 +21,8 @@
     <a href="#historia">História</a>
     <a href="#data-local">Evento</a>
     <a href="#rsvp">RSVP</a>
-    <a href="#hospedagem">Hospedagem</a>
     <a href="#presentes">Presentes</a>
+    <a href="#hospedagem">Hospedagem</a>
     <a href="#galeria">Galeria</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -205,6 +205,95 @@
     </form>
   </section>
 
+  <!-- ============ LISTA DE PRESENTES ============ -->
+  <section id="presentes" class="section presentes-section">
+    <div class="section__head">
+      <p class="eyebrow reveal">Presentes</p>
+      <h2 class="section__title reveal">Lista de presentes</h2>
+      <p class="section__text reveal">Sua presença já é o maior presente. Mas se quiser nos ajudar a dar os primeiros passos dessa vida nova, escolha um sonho abaixo — cada contribuição vai direto pra realizá-lo, 100% via Pix, sem taxas.</p>
+
+      <div class="presentes-progress reveal" id="presentes-progress" hidden>
+        <div class="presentes-progress__bar"><div class="presentes-progress__fill"></div></div>
+        <p class="presentes-progress__text"></p>
+      </div>
+    </div>
+
+    <div id="presentes-hero"></div>
+
+    <p class="presentes-grid__label reveal">Outras formas de ajudar</p>
+    <div class="presentes-grid reveal" id="presentes-grid">
+      <!-- Cards gerados via JS a partir de data/presentes.json -->
+    </div>
+  </section>
+
+  <template id="presentes-hero-template">
+    <article class="presentes-hero">
+      <div class="ph ph--terracotta photo-placeholder presentes-hero__photo" style="aspect-ratio:4/3;"><span></span></div>
+      <div class="presentes-hero__body">
+        <div class="presentes-hero__badge">Presente em destaque</div>
+        <div class="presentes-card__category"></div>
+        <h3 class="presentes-hero__title"></h3>
+        <p class="presentes-hero__text"></p>
+        <p class="presentes-hero__why"></p>
+
+        <div class="presentes-card__amounts" hidden>
+          <div class="presentes-card__chips"></div>
+          <div class="field presentes-card__custom">
+            <label>Outro valor (R$)</label>
+            <input type="number" min="1" step="1" inputmode="decimal" placeholder="Digite um valor">
+          </div>
+        </div>
+
+        <button type="button" class="presentes-card__cta">Presentear via Pix</button>
+
+        <div class="presentes-card__pix" hidden>
+          <div class="presentes-card__qr"></div>
+          <p class="presentes-card__amount-label"></p>
+          <p class="presentes-card__thanks"></p>
+          <label class="presentes-card__copy-label">Pix copia e cola</label>
+          <div class="presentes-card__copy-row">
+            <input type="text" class="presentes-card__copy-input" readonly>
+            <button type="button" class="presentes-card__copy-btn">Copiar</button>
+          </div>
+          <p class="presentes-card__copy-feedback" hidden>Código copiado!</p>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <template id="presentes-card-template">
+    <article class="presentes-card">
+      <div class="ph ph--cream photo-placeholder presentes-card__photo" style="aspect-ratio:4/3;"><span></span></div>
+      <div class="presentes-card__body">
+        <div class="presentes-card__category"></div>
+        <h3 class="presentes-card__title"></h3>
+        <p class="presentes-card__text"></p>
+
+        <div class="presentes-card__amounts" hidden>
+          <div class="presentes-card__chips"></div>
+          <div class="field presentes-card__custom">
+            <label>Outro valor (R$)</label>
+            <input type="number" min="1" step="1" inputmode="decimal" placeholder="Digite um valor">
+          </div>
+        </div>
+
+        <button type="button" class="presentes-card__cta">Presentear via Pix</button>
+
+        <div class="presentes-card__pix" hidden>
+          <div class="presentes-card__qr"></div>
+          <p class="presentes-card__amount-label"></p>
+          <p class="presentes-card__thanks"></p>
+          <label class="presentes-card__copy-label">Pix copia e cola</label>
+          <div class="presentes-card__copy-row">
+            <input type="text" class="presentes-card__copy-input" readonly>
+            <button type="button" class="presentes-card__copy-btn">Copiar</button>
+          </div>
+          <p class="presentes-card__copy-feedback" hidden>Código copiado!</p>
+        </div>
+      </div>
+    </article>
+  </template>
+
   <!-- ============ HOSPEDAGEM ============ -->
   <section id="hospedagem" class="section hospedagem-section">
     <div class="section__head">
@@ -247,51 +336,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ============ LISTA DE PRESENTES ============ -->
-  <section id="presentes" class="section presentes-section">
-    <div class="section__head">
-      <p class="eyebrow reveal">Presentes</p>
-      <h2 class="section__title reveal">Lista de presentes</h2>
-      <p class="section__text reveal">Sua presença já é o maior presente. Mas se quiser nos ajudar a começar essa nova fase, escolha abaixo e contribua direto via Pix — sem taxas, sem intermediários.</p>
-    </div>
-
-    <div class="presentes-grid reveal" id="presentes-grid">
-      <!-- Cards gerados via JS a partir de data/presentes.json -->
-    </div>
-  </section>
-
-  <template id="presentes-card-template">
-    <article class="presentes-card">
-      <div class="ph ph--cream photo-placeholder presentes-card__photo" style="aspect-ratio:4/3;"><span></span></div>
-      <div class="presentes-card__body">
-        <div class="presentes-card__category"></div>
-        <h3 class="presentes-card__title"></h3>
-        <p class="presentes-card__text"></p>
-
-        <div class="presentes-card__amounts" hidden>
-          <div class="presentes-card__chips"></div>
-          <div class="field presentes-card__custom">
-            <label>Outro valor (R$)</label>
-            <input type="number" min="1" step="1" inputmode="decimal" placeholder="Digite um valor">
-          </div>
-        </div>
-
-        <button type="button" class="presentes-card__cta">Presentear via Pix</button>
-
-        <div class="presentes-card__pix" hidden>
-          <div class="presentes-card__qr"></div>
-          <p class="presentes-card__amount-label"></p>
-          <label class="presentes-card__copy-label">Pix copia e cola</label>
-          <div class="presentes-card__copy-row">
-            <input type="text" class="presentes-card__copy-input" readonly>
-            <button type="button" class="presentes-card__copy-btn">Copiar</button>
-          </div>
-          <p class="presentes-card__copy-feedback" hidden>Código copiado!</p>
-        </div>
-      </div>
-    </article>
-  </template>
 
   <!-- ============ GALERIA ============ -->
   <section id="galeria" class="section galeria-section">
@@ -377,6 +421,8 @@
 
 <!-- iframe oculto usado para enviar o RSVP ao Google Forms sem sair da página -->
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+
+<a href="#presentes" class="presentear-floater" id="presentear-floater" hidden>Presentear</a>
 
 <script src="js/vendor/qrcode.js"></script>
 <script src="js/main.js"></script>

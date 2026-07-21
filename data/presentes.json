@@ -1,53 +1,48 @@
-[
-  {
-    "id": "lua-de-mel",
-    "categoria": "Lua de mel",
-    "titulo": "Lua de mel em Ilhabela",
-    "descricao": "Ajudem a pagar uma noite especial na nossa lua de mel.",
-    "tipo": "flexivel",
-    "valoresSugeridos": [50, 100, 250, 500],
-    "valorMinimo": 20
+{
+  "progresso": {
+    "arrecadado": 0,
+    "meta": 20000,
+    "atualizadoEm": "2026-07-20"
   },
-  {
-    "id": "jantar-romantico",
-    "categoria": "Experiências",
-    "titulo": "Jantar romântico",
-    "descricao": "Um jantar especial para comemorarmos o início da vida a dois.",
-    "tipo": "fixo",
-    "valor": 180
-  },
-  {
-    "id": "passeio-de-barco",
-    "categoria": "Experiências",
-    "titulo": "Passeio de barco pela ilha",
-    "descricao": "Um dia inteiro navegando pelas praias de Ilhabela.",
-    "tipo": "fixo",
-    "valor": 250
-  },
-  {
-    "id": "casa-nova",
-    "categoria": "Casa nova",
-    "titulo": "Ajude a mobiliar nossa casa",
-    "descricao": "Cada contribuição nos ajuda a montar o nosso novo lar, do jeito que a gente sempre sonhou.",
-    "tipo": "flexivel",
-    "valoresSugeridos": [50, 100, 200, 400],
-    "valorMinimo": 20
-  },
-  {
-    "id": "jogo-de-panelas",
-    "categoria": "Casa nova",
-    "titulo": "Jogo de panelas",
-    "descricao": "Pra gente cozinhar junto nos primeiros anos de casados.",
-    "tipo": "fixo",
-    "valor": 320
-  },
-  {
-    "id": "cota-livre",
-    "categoria": "Contribuição livre",
-    "titulo": "Escolha o valor",
-    "descricao": "Se preferir, contribua com o valor que fizer sentido pra você — toda ajuda é bem-vinda.",
-    "tipo": "flexivel",
-    "valoresSugeridos": [30, 50, 100, 150],
-    "valorMinimo": 10
-  }
-]
+  "presentes": [
+    {
+      "id": "kit-lua-de-mel",
+      "categoria": "Lua de mel",
+      "destaque": true,
+      "titulo": "Kit Lua de Mel em Ilhabela",
+      "descricao": "Sonhamos em acordar de frente pro mar em Ilhabela, sem pressa pra fazer nada além de aproveitar um ao outro — um jantar à luz de vela, um passeio de barco pelas ilhotas e uma suíte com vista pro mar na nossa primeira semana de casados.",
+      "porque": "É a nossa primeira viagem como marido e mulher, e queremos guardar cada detalhe dela.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [200, 400, 750, 1200],
+      "valorSugeridoIndex": 2,
+      "valorMinimo": 50,
+      "agradecimento": "Obrigado por nos ajudar a viver essa lua de mel! Vamos brindar com você em mente."
+    },
+    {
+      "id": "kit-casa-nova",
+      "categoria": "Casa nova",
+      "destaque": false,
+      "titulo": "Kit Casa Nova",
+      "descricao": "Estamos montando nosso primeiro lar juntos, do zero — de um jogo de panelas pra cozinhar os primeiros jantares a móveis pra receber vocês em uma próxima visita.",
+      "porque": null,
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [100, 200, 400, 700],
+      "valorSugeridoIndex": 2,
+      "valorMinimo": 30
+    },
+    {
+      "id": "cota-livre",
+      "categoria": "Contribuição livre",
+      "destaque": false,
+      "titulo": "Escolha o valor",
+      "descricao": "Se preferir, contribua com o valor que fizer sentido pra você — toda ajuda é bem-vinda.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [30, 50, 100, 150],
+      "valorSugeridoIndex": 2,
+      "valorMinimo": 10
+    }
+  ]
+}

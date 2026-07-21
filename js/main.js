@@ -191,7 +191,7 @@
   // público do site. "nome" e "cidade" seguem o padrão do Banco Central:
   // sem acentos, nome com até 25 caracteres, cidade com até 15 caracteres.
   const PIX_CONFIG = {
-    chave: "TROCAR-AQUI-CHAVE-PIX",
+    chave: "11910612305",
     nome: "Marina e Pedro",
     cidade: "ILHABELA",
   };

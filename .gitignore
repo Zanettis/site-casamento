@@ -2,4 +2,9 @@
 # A versão usada no site (comprimida) fica em assets/video/hero.mp4 e é versionada normalmente.
 assets/video/hero-original.mp4
 assets/video/hero-previous.mp4
+
+# Fotos originais em resolução total (não comprimidas) — as versões usadas no
+# site ficam em assets/images/historia-*.jpg e são versionadas normalmente.
+assets/images/*-original.jpg
+
 .gstack/

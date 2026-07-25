@@ -2,14 +2,15 @@
 
 O hero já usa um vídeo real (`assets/video/hero.mp4`) com `hero-poster.jpg` como
 capa/fallback (gerado automaticamente a partir de um frame do vídeo — pode substituir
-por outra imagem se quiser uma capa diferente). As demais seções ainda usam
+por outra imagem se quiser uma capa diferente). A seção "Nossa história" também já
+usa fotos reais (`historia-1.jpg`, `historia-2.jpg`). As demais seções ainda usam
 placeholders visuais em CSS (padrão listrado com uma legenda no meio).
 
 ## Onde cada placeholder está no `index.html`
 
-| Seção | Placeholder(s) | Sugestão de nome de arquivo |
+| Seção | Placeholder(s) | Nome de arquivo |
 |---|---|---|
-| Nossa história (`#historia`) | 2 fotos (primeiro encontro, pedido) | `historia-1.jpg`, `historia-2.jpg` |
+| Nossa história (`#historia`) | ✅ já usa fotos reais | `historia-1.jpg` (primeiro encontro), `historia-2.jpg` (pedido) |
 | Data e local (`#data-local`) | 1 mapa (ou screenshot do Google Maps) | `mapa.jpg` |
 | Hospedagem (`#hospedagem`) | 3 fotos (uma por hospedagem) | `hospedagem-1.jpg`, `hospedagem-2.jpg`, `hospedagem-3.jpg` |
 | Galeria (`#galeria`) | 6 fotos | `galeria-1.jpg` … `galeria-6.jpg` |

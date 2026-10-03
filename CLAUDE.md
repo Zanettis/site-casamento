@@ -20,7 +20,7 @@ Site de casamento de página única (Marina & Pedro, 20/02/2027, Casa de Canoa �
 
 ## Seções do `index.html`
 
-`#inicio` (hero com vídeo + nomes) → quote → `#historia` (2 fotos + countdown) → `#data-local` (horários, traje, mapa) → `#rsvp` (formulário) → `#presentes` (lista de presentes/Pix) → `#hospedagem` (hospedagem dos noivos + 3 opções) → `#galeria` (6 fotos) → `#faq` (accordion) → footer.
+`#inicio` (hero com vídeo + nomes) → quote → `#historia` (2 fotos + countdown) → `#data-local` (horários, traje, mapa) → `#rsvp` (formulário) → `#presentes` (lista de presentes/Pix) → `#hospedagem` (hospedagem dos noivos + 3 opções) → `#balsa` (guia da balsa, hora marcada, câmeras ao vivo, TPA e dicas) → `#galeria` (6 fotos) → `#faq` (accordion) → footer.
 
 A maior parte das fotos ainda é placeholder CSS (`div.ph.ph--cor.photo-placeholder`). O hero já usa vídeo/poster reais.
 

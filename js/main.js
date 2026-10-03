@@ -105,41 +105,63 @@
     });
   });
 
-  // ---------- RSVP: attending toggle ----------
+  // ---------- RSVP: attending toggle & field visibility ----------
   const attendButtons = document.querySelectorAll(".attend-toggle__btn");
   const attendingInput = document.getElementById("rsvp-attending");
+  const fieldGuests = document.getElementById("rsvp-field-guests");
+  const fieldLodging = document.getElementById("rsvp-field-lodging");
+  const rsvpSubmitBtn = document.getElementById("rsvp-submit-btn");
 
   attendButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       attendButtons.forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
-      attendingInput.value = btn.dataset.attend;
+      const status = btn.dataset.attend;
+      attendingInput.value = status;
+
+      if (status === "nao") {
+        if (fieldGuests) fieldGuests.hidden = true;
+        if (fieldLodging) fieldLodging.hidden = true;
+        if (rsvpSubmitBtn) rsvpSubmitBtn.textContent = "Enviar resposta";
+      } else {
+        if (fieldGuests) fieldGuests.hidden = false;
+        if (fieldLodging) fieldLodging.hidden = false;
+        if (rsvpSubmitBtn) rsvpSubmitBtn.textContent = "Confirmar presença";
+      }
     });
   });
 
   // ---------- RSVP: submit to Google Form ----------
   //
-  // TROCAR AQUI: preencha com a URL e os IDs de campo reais do seu Google Form.
-  // 1. Crie o formulário em forms.google.com com os campos: Nome, E-mail,
-  //    Presença, Acompanhantes, Mensagem.
-  // 2. Pegue o link do formulário (Enviar > ícone de link) e troque
-  //    "/viewform" por "/formResponse" abaixo em actionUrl.
-  // 3. Para achar cada "entry.XXXXXXX": inspecione o HTML do formulário
-  //    publicado e copie o atributo name de cada <input>/<textarea>/<select>.
+  // CONFIGURAÇÃO SIMPLES DO GOOGLE FORMS:
+  // 1. Crie seu formulário em forms.google.com com os campos:
+  //    - Nome completo (Resposta curta)
+  //    - E-mail (Resposta curta)
+  //    - Presença (Múltipla escolha: "Sim, estarei lá" / "Não poderei ir")
+  //    - Número de acompanhantes (Resposta curta ou menu)
+  //    - Onde você vai se hospedar? (Resposta curta)
+  //    - Mensagem para os noivos (Parágrafo)
+  // 2. Nos 3 pontinhos (...) do formulário > "Gerar link preenchido previamente".
+  //    Digite os textos teste: NOME, EMAIL, SIM, ACOMPANHANTES, HOSPEDAGEM, MENSAGEM
+  //    e clique em "Gerar link" / "Copiar link".
+  // 3. Cole o link inteiro em prefilledUrl abaixo (o script extrai os IDs sozinho!).
+  //    OU preencha os IDs manualmente em entries.
   const GOOGLE_FORM_CONFIG = {
-    actionUrl:
-      "https://docs.google.com/forms/d/e/COLOQUE-SEU-FORM-ID-AQUI/formResponse",
+    actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfGcgDMAFCDySuMogu74N8HLmCFb6yXr0PSsM-FzZ9x8EojEQ/formResponse",
     entries: {
-      name: "entry.SUBSTITUA_PELO_ID_NOME",
-      email: "entry.SUBSTITUA_PELO_ID_EMAIL",
-      attending: "entry.SUBSTITUA_PELO_ID_PRESENCA",
-      guests: "entry.SUBSTITUA_PELO_ID_ACOMPANHANTES",
-      message: "entry.SUBSTITUA_PELO_ID_MENSAGEM",
+      name: "entry.559352220",
+      email: "entry.1796933823",
+      attending: "entry.877086558",
+      guests: "entry.924523986",
+      lodging: "entry.186230675",
+      message: "entry.443565211",
     },
   };
 
   const rsvpForm = document.getElementById("rsvp-form");
   const rsvpSuccess = document.getElementById("rsvp-success");
+  const rsvpSuccessTitle = rsvpSuccess ? rsvpSuccess.querySelector(".rsvp-success__title") : null;
+  const rsvpSuccessText = rsvpSuccess ? rsvpSuccess.querySelector(".rsvp-success__text") : null;
   const rsvpSuccessName = document.getElementById("rsvp-success-name");
 
   if (rsvpForm) {
@@ -151,11 +173,14 @@
         return;
       }
 
+      const isAttending = attendingInput.value === "sim";
+      const lodgingInput = document.getElementById("rsvp-lodging");
       const values = {
         name: document.getElementById("rsvp-name").value,
         email: document.getElementById("rsvp-email").value,
-        attending: attendingInput.value,
-        guests: document.getElementById("rsvp-guests").value,
+        attending: isAttending ? "Sim, estarei lá" : "Não poderei ir",
+        guests: isAttending ? document.getElementById("rsvp-guests").value : "0",
+        lodging: isAttending && lodgingInput ? lodgingInput.value : "-",
         message: document.getElementById("rsvp-message").value,
       };
 
@@ -165,18 +190,31 @@
       hiddenForm.target = "hidden_iframe";
 
       Object.entries(values).forEach(([key, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = GOOGLE_FORM_CONFIG.entries[key];
-        input.value = value;
-        hiddenForm.appendChild(input);
+        const entryKey = GOOGLE_FORM_CONFIG.entries[key];
+        if (entryKey && !entryKey.includes("SUBSTITUA")) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = entryKey;
+          input.value = value;
+          hiddenForm.appendChild(input);
+        }
       });
 
       document.body.appendChild(hiddenForm);
       hiddenForm.submit();
       hiddenForm.remove();
 
-      rsvpSuccessName.textContent = values.name;
+      if (rsvpSuccessName) rsvpSuccessName.textContent = values.name;
+      if (rsvpSuccessTitle && rsvpSuccessText) {
+        if (isAttending) {
+          rsvpSuccessTitle.textContent = "Presença confirmada!";
+          rsvpSuccessText.innerHTML = `Obrigado, <span id="rsvp-success-name">${values.name}</span>. Mal podemos esperar para celebrar com você!`;
+        } else {
+          rsvpSuccessTitle.textContent = "Resposta enviada!";
+          rsvpSuccessText.innerHTML = `Obrigado por nos avisar, <span id="rsvp-success-name">${values.name}</span>. Sentiremos sua falta!`;
+        }
+      }
+
       rsvpForm.hidden = true;
       rsvpSuccess.hidden = false;
       rsvpSuccess.classList.add("visible");

@@ -48,7 +48,7 @@ presentes: [
 
 ## Estado atual / pendências conhecidas
 
-- **RSVP não está funcional**: `GOOGLE_FORM_CONFIG` em `js/main.js` ainda tem `actionUrl` e `entry.SUBSTITUA_...` como placeholders. Precisa criar o Google Form e preencher os IDs reais (instruções já estão em comentário no próprio `js/main.js` e no HTML, seção `#rsvp`).
+- **RSVP funcional**: Formulário integrado diretamente ao Google Forms (`1FAIpQLSfGcgDMAFCDySuMogu74N8HLmCFb6yXr0PSsM-FzZ9x8EojEQ`) com campos Nome, E-mail, Presença (Sim/Não), Acompanhantes, Hospedagem e Mensagem via iframe oculto (sem backend/sem CORS).
 - Seção `#historia` já usa fotos reais e comprimidas (`assets/images/historia-1.jpg`, `historia-2.jpg`, ~150–460 KB). As versões originais em resolução total ficam como `assets/images/*-original.jpg`, gitignoradas (mesmo padrão do vídeo do hero).
 - Nenhum presente em `data/presentes.json` tem `imagem` definida (todos `null`) — ainda usam placeholder.
 - **Chave Pix real está hardcoded** em `js/main.js` (`PIX_CONFIG.chave`), visível no código-fonte client-side — é intencional (não há backend), mas o próprio comentário no código recomenda usar uma chave aleatória em vez do CPF.

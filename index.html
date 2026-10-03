@@ -184,7 +184,7 @@
         <input type="hidden" id="rsvp-attending" name="attending" required>
       </div>
 
-      <div class="field">
+      <div class="field" id="rsvp-field-guests">
         <label for="rsvp-guests">Número de acompanhantes</label>
         <select id="rsvp-guests" name="guests">
           <option value="0">Somente eu</option>
@@ -194,12 +194,17 @@
         </select>
       </div>
 
+      <div class="field" id="rsvp-field-lodging">
+        <label for="rsvp-lodging">Onde você vai se hospedar?</label>
+        <input type="text" id="rsvp-lodging" name="lodging" placeholder="Ex: Casa di Sirena, Pousada Mar Verde, Airbnb ou ainda não decidi">
+      </div>
+
       <div class="field">
         <label for="rsvp-message">Mensagem para os noivos (opcional)</label>
         <textarea id="rsvp-message" name="message" rows="3" placeholder="Deixe um recado..."></textarea>
       </div>
 
-      <button type="submit" class="rsvp-form__submit">Confirmar presença</button>
+      <button type="submit" class="rsvp-form__submit" id="rsvp-submit-btn">Confirmar presença</button>
     </form>
   </section>
 

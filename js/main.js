@@ -131,31 +131,9 @@
     });
   });
 
-  // ---------- RSVP: submit to Google Form ----------
-  //
-  // CONFIGURAÇÃO SIMPLES DO GOOGLE FORMS:
-  // 1. Crie seu formulário em forms.google.com com os campos:
-  //    - Nome completo (Resposta curta)
-  //    - E-mail (Resposta curta)
-  //    - Presença (Múltipla escolha: "Sim, estarei lá" / "Não poderei ir")
-  //    - Número de acompanhantes (Resposta curta ou menu)
-  //    - Onde você vai se hospedar? (Resposta curta)
-  //    - Mensagem para os noivos (Parágrafo)
-  // 2. Nos 3 pontinhos (...) do formulário > "Gerar link preenchido previamente".
-  //    Digite os textos teste: NOME, EMAIL, SIM, ACOMPANHANTES, HOSPEDAGEM, MENSAGEM
-  //    e clique em "Gerar link" / "Copiar link".
-  // 3. Cole o link inteiro em prefilledUrl abaixo (o script extrai os IDs sozinho!).
-  //    OU preencha os IDs manualmente em entries.
-  const GOOGLE_FORM_CONFIG = {
-    actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfGcgDMAFCDySuMogu74N8HLmCFb6yXr0PSsM-FzZ9x8EojEQ/formResponse",
-    entries: {
-      name: "entry.559352220",
-      email: "entry.1796933823",
-      attending: "entry.877086558",
-      guests: "entry.924523986",
-      lodging: "entry.186230675",
-      message: "entry.443565211",
-    },
+  // ---------- RSVP: submit to Google Sheets (via Apps Script) ----------
+  const GOOGLE_SHEETS_CONFIG = {
+    scriptUrl: "https://script.google.com/macros/s/AKfycbx20Alb36RKCwOZRG1ic_kIJr8U1D8wMT2py-UFHUddBqGThysm-Dr4Tpvki3IadGjMow/exec",
   };
 
   const rsvpForm = document.getElementById("rsvp-form");
@@ -176,34 +154,33 @@
       const isAttending = attendingInput.value === "sim";
       const lodgingInput = document.getElementById("rsvp-lodging");
       const values = {
-        name: document.getElementById("rsvp-name").value,
-        email: document.getElementById("rsvp-email").value,
+        name: document.getElementById("rsvp-name").value.trim(),
+        email: document.getElementById("rsvp-email").value.trim(),
         attending: isAttending ? "Sim, estarei lá" : "Não poderei ir",
         guests: isAttending ? document.getElementById("rsvp-guests").value : "0",
-        lodging: isAttending && lodgingInput ? lodgingInput.value : "-",
-        message: document.getElementById("rsvp-message").value,
+        lodging: isAttending && lodgingInput ? lodgingInput.value.trim() : "-",
+        message: document.getElementById("rsvp-message").value.trim(),
       };
 
-      const hiddenForm = document.createElement("form");
-      hiddenForm.action = GOOGLE_FORM_CONFIG.actionUrl;
-      hiddenForm.method = "POST";
-      hiddenForm.target = "hidden_iframe";
+      const submitBtn = rsvpForm.querySelector("button[type='submit']");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando...";
+      }
 
-      Object.entries(values).forEach(([key, value]) => {
-        const entryKey = GOOGLE_FORM_CONFIG.entries[key];
-        if (entryKey && !entryKey.includes("SUBSTITUA")) {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = entryKey;
-          input.value = value;
-          hiddenForm.appendChild(input);
-        }
-      });
+      // Envia os dados para a planilha Google Sheets
+      if (GOOGLE_SHEETS_CONFIG.scriptUrl) {
+        fetch(GOOGLE_SHEETS_CONFIG.scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(values),
+        }).catch((err) => {
+          console.warn("Erro ao enviar para Google Sheets:", err);
+        });
+      }
 
-      document.body.appendChild(hiddenForm);
-      hiddenForm.submit();
-      hiddenForm.remove();
-
+      // Feedback imediato e amigável para o convidado
       if (rsvpSuccessName) rsvpSuccessName.textContent = values.name;
       if (rsvpSuccessTitle && rsvpSuccessText) {
         if (isAttending) {

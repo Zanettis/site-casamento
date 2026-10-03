@@ -11,6 +11,7 @@ placeholders visuais em CSS (padrão listrado com uma legenda no meio).
 | Seção | Placeholder(s) | Nome de arquivo |
 |---|---|---|
 | Nossa história (`#historia`) | ✅ já usa fotos reais | `historia-1.jpg` (primeiro encontro), `historia-2.jpg` (pedido) |
+| Presentes (`#presentes`) | ✅ Hero já usa foto real | `presente-puerto-escondido.jpg` |
 | Data e local (`#data-local`) | 1 mapa (ou screenshot do Google Maps) | `mapa.jpg` |
 | Hospedagem (`#hospedagem`) | 3 fotos (uma por hospedagem) | `hospedagem-1.jpg`, `hospedagem-2.jpg`, `hospedagem-3.jpg` |
 | Galeria (`#galeria`) | 6 fotos | `galeria-1.jpg` … `galeria-6.jpg` |

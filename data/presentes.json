@@ -1,48 +1,140 @@
 {
   "progresso": {
     "arrecadado": 0,
-    "meta": 20000,
-    "atualizadoEm": "2026-07-20"
+    "meta": 25000,
+    "atualizadoEm": "2026-10-03"
   },
   "presentes": [
     {
-      "id": "kit-lua-de-mel",
-      "categoria": "Lua de mel",
+      "id": "estadia-puerto-escondido",
+      "categoria": "Puerto Escondido",
       "destaque": true,
-      "titulo": "Kit Lua de Mel em Ilhabela",
-      "descricao": "Sonhamos em acordar de frente pro mar em Ilhabela, sem pressa pra fazer nada além de aproveitar um ao outro — um jantar à luz de vela, um passeio de barco pelas ilhotas e uma suíte com vista pro mar na nossa primeira semana de casados.",
-      "porque": "É a nossa primeira viagem como marido e mulher, e queremos guardar cada detalhe dela.",
+      "titulo": "Hospedagem à Beira-Mar em Puerto Escondido",
+      "descricao": "Nosso refúgio dos sonhos na costa do Pacífico: acordar ouvindo o mar, relaxar sob os coqueiros em La Punta e assistir ao pôr do sol inesquecível da praia nos nossos primeiros dias de casados.",
+      "porque": "É o nosso momento de desacelerar juntos, viver a praia e celebrar o início desse novo capítulo com a essência acolhedora e charmosa de Oaxaca.",
       "tipo": "flexivel",
       "imagem": null,
-      "valoresSugeridos": [200, 400, 750, 1200],
-      "valorSugeridoIndex": 2,
+      "valoresSugeridos": [250, 500, 800, 1200],
+      "valorSugeridoIndex": 1,
       "valorMinimo": 50,
-      "agradecimento": "Obrigado por nos ajudar a viver essa lua de mel! Vamos brindar com você em mente."
+      "agradecimento": "¡Muchas gracias! Você está nos ajudando a viver dias mágicos em Puerto Escondido. Vamos brindar com você no coração!"
     },
     {
-      "id": "kit-casa-nova",
-      "categoria": "Casa nova",
+      "id": "voo-balao-teotihuacan",
+      "categoria": "Cidade do México",
       "destaque": false,
-      "titulo": "Kit Casa Nova",
-      "descricao": "Estamos montando nosso primeiro lar juntos, do zero — de um jogo de panelas pra cozinhar os primeiros jantares a móveis pra receber vocês em uma próxima visita.",
-      "porque": null,
+      "titulo": "Voo de Balão ao Amanhecer em Teotihuacán",
+      "descricao": "Sobrevoar as históricas Pirâmides do Sol e da Lua no balão ao nascer do dia, seguido de um brinde de espumante nas alturas.",
       "tipo": "flexivel",
       "imagem": null,
-      "valoresSugeridos": [100, 200, 400, 700],
-      "valorSugeridoIndex": 2,
-      "valorMinimo": 30
+      "valoresSugeridos": [150, 300, 500, 800],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 50,
+      "agradecimento": "Obrigado por nos presentear com uma das vistas mais inesquecíveis da nossa viagem!"
+    },
+    {
+      "id": "cultura-coyoacan-frida",
+      "categoria": "Cidade do México",
+      "destaque": false,
+      "titulo": "Tarde na Casa Azul de Frida Kahlo & Coyoacán",
+      "descricao": "Passeio cultural pelas ruas floridas e charmosas de Coyoacán, visita à icônica Casa Azul de Frida Kahlo e parada para churros tradicionais e café.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [80, 140, 220, 350],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 30,
+      "agradecimento": "¡Gracias! Mal podemos esperar para viver a história e a arte mexicana de perto."
+    },
+    {
+      "id": "jantar-roma-condesa",
+      "categoria": "Cidade do México",
+      "destaque": false,
+      "titulo": "Jantar Romântico em Roma & Condesa",
+      "descricao": "Uma noite especial nos bairros mais charmosos da capital, conhecendo a alta gastronomia mexicana moderna com drinks autorais.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [120, 250, 400, 600],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 50,
+      "agradecimento": "Obrigado por esse brinde delicioso! Vamos lembrar de você a cada garfada."
+    },
+    {
+      "id": "tour-gastronomico-moles-oaxaca",
+      "categoria": "Oaxaca",
+      "destaque": false,
+      "titulo": "Tour Gastronômico de Moles & Mercados de Oaxaca",
+      "descricao": "Explorar a capital gastronômica do México: provar os lendários moles oaxaquenhos, tlayudas crocantes e o tradicional chocolate artesanal no Mercado 20 de Noviembre.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [90, 180, 280, 450],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 30,
+      "agradecimento": "¡Muchas gracias! Esse sabor autêntico de Oaxaca vai ficar marcado na nossa memória."
+    },
+    {
+      "id": "hierve-el-agua-mezcal",
+      "categoria": "Oaxaca",
+      "destaque": false,
+      "titulo": "Hierve el Agua & Degustação em Palenque de Mezcal",
+      "descricao": "Banho nas piscinas naturais infinitas de calcário com vista panorâmica para as montanhas e visita a uma destilaria artesanal com degustação de mezcal.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [120, 220, 380, 550],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 40,
+      "agradecimento": "Um brinde com mezcal artesanal à sua saúde e ao seu carinho!"
+    },
+    {
+      "id": "bioluminescencia-manialtepec",
+      "categoria": "Puerto Escondido",
+      "destaque": false,
+      "titulo": "Noite Mágica de Bioluminescência na Lagoa",
+      "descricao": "Navegar sob o céu estrelado na Lagoa de Manialtepec e nadar nas águas brilhantes iluminadas pelo plâncton bioluminescente.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [100, 200, 320, 480],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 40,
+      "agradecimento": "Obrigado por essa experiência única sob as estrelas de Puerto Escondido!"
+    },
+    {
+      "id": "jantar-sunset-la-punta",
+      "categoria": "Puerto Escondido",
+      "destaque": false,
+      "titulo": "Jantar com Pôr do Sol em La Punta",
+      "descricao": "Mesa pé na areia para ver o sol se pôr no Oceano Pacífico, com peixe fresco na brasa e mezcalitas geladas.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [110, 220, 360, 520],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 40,
+      "agradecimento": "Obrigado por esse fim de tarde inesquecível de frente para o mar!"
+    },
+    {
+      "id": "soltura-tartarugas-marinhas",
+      "categoria": "Puerto Escondido",
+      "destaque": false,
+      "titulo": "Soltura de Tartaruguinhas Marinhas no Pacífico",
+      "descricao": "Participar de um projeto de preservação ecológica ajudando filhotinhos de tartaruga marinha a darem seus primeiros passos rumo ao mar ao entardecer.",
+      "tipo": "flexivel",
+      "imagem": null,
+      "valoresSugeridos": [60, 120, 200, 300],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 30,
+      "agradecimento": "Obrigado por nos ajudar a viver esse momento tão puro e especial na natureza!"
     },
     {
       "id": "cota-livre",
       "categoria": "Contribuição livre",
       "destaque": false,
-      "titulo": "Escolha o valor",
-      "descricao": "Se preferir, contribua com o valor que fizer sentido pra você — toda ajuda é bem-vinda.",
+      "titulo": "Cota Livre — ¡Viva México!",
+      "descricao": "Se preferir presentear com outro valor, escolha a quantia que fizer sentido pra você. Toda ajuda constrói essa lua de mel dos nossos sonhos.",
       "tipo": "flexivel",
       "imagem": null,
-      "valoresSugeridos": [30, 50, 100, 150],
-      "valorSugeridoIndex": 2,
-      "valorMinimo": 10
+      "valoresSugeridos": [50, 100, 200, 500],
+      "valorSugeridoIndex": 1,
+      "valorMinimo": 20,
+      "agradecimento": "Muito obrigado pelo carinho! Cada contribuição faz parte dessa viagem inesquecível."
     }
   ]
 }

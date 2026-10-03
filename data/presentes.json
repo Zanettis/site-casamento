@@ -46,19 +46,6 @@
       "agradecimento": "¡Gracias! Mal podemos esperar para viver a história e a arte mexicana de perto."
     },
     {
-      "id": "jantar-roma-condesa",
-      "categoria": "Cidade do México",
-      "destaque": false,
-      "titulo": "Jantar Romântico em Roma & Condesa",
-      "descricao": "Uma noite especial nos bairros mais charmosos da capital, conhecendo a alta gastronomia mexicana moderna com drinks autorais.",
-      "tipo": "flexivel",
-      "imagem": null,
-      "valoresSugeridos": [120, 250, 400, 600],
-      "valorSugeridoIndex": 1,
-      "valorMinimo": 50,
-      "agradecimento": "Obrigado por esse brinde delicioso! Vamos lembrar de você a cada garfada."
-    },
-    {
       "id": "tour-gastronomico-moles-oaxaca",
       "categoria": "Oaxaca",
       "destaque": false,
@@ -83,32 +70,6 @@
       "valorSugeridoIndex": 1,
       "valorMinimo": 40,
       "agradecimento": "Um brinde com mezcal artesanal à sua saúde e ao seu carinho!"
-    },
-    {
-      "id": "bioluminescencia-manialtepec",
-      "categoria": "Puerto Escondido",
-      "destaque": false,
-      "titulo": "Noite Mágica de Bioluminescência na Lagoa",
-      "descricao": "Navegar sob o céu estrelado na Lagoa de Manialtepec e nadar nas águas brilhantes iluminadas pelo plâncton bioluminescente.",
-      "tipo": "flexivel",
-      "imagem": null,
-      "valoresSugeridos": [100, 200, 320, 480],
-      "valorSugeridoIndex": 1,
-      "valorMinimo": 40,
-      "agradecimento": "Obrigado por essa experiência única sob as estrelas de Puerto Escondido!"
-    },
-    {
-      "id": "jantar-sunset-la-punta",
-      "categoria": "Puerto Escondido",
-      "destaque": false,
-      "titulo": "Jantar com Pôr do Sol em La Punta",
-      "descricao": "Mesa pé na areia para ver o sol se pôr no Oceano Pacífico, com peixe fresco na brasa e mezcalitas geladas.",
-      "tipo": "flexivel",
-      "imagem": null,
-      "valoresSugeridos": [110, 220, 360, 520],
-      "valorSugeridoIndex": 1,
-      "valorMinimo": 40,
-      "agradecimento": "Obrigado por esse fim de tarde inesquecível de frente para o mar!"
     },
     {
       "id": "soltura-tartarugas-marinhas",

@@ -20,17 +20,17 @@
       "agradecimento": "¡Muchas gracias! Você está nos ajudando a viver dias mágicos em Puerto Escondido. Vamos brindar com você no coração!"
     },
     {
-      "id": "catamara-snorkel-isla-mujeres",
-      "categoria": "Caribe Mexicano",
+      "id": "barco-snorkel-puerto-escondido",
+      "categoria": "Puerto Escondido",
       "destaque": false,
-      "titulo": "Passeio de Catamarã & Snorkel",
-      "descricao": "Um dia navegando pelas águas azul-turquesa de Cancún até Isla Mujeres, com mergulho nos corais.",
+      "titulo": "Passeio de Barco & Snorkel no Pacífico",
+      "descricao": "Um dia navegando pela deslumbrante costa de Puerto Escondido, com snorkel nas enseadas de corais e observação de golfinhos e vida marinha.",
       "tipo": "flexivel",
       "imagem": null,
       "valoresSugeridos": [120, 220, 380, 550],
       "valorSugeridoIndex": 1,
       "valorMinimo": 40,
-      "agradecimento": "¡Muchas gracias! Esse dia navegando pelo mar azul do Caribe vai ser inesquecível!"
+      "agradecimento": "¡Muchas gracias! Esse dia navegando pelas águas do Pacífico em Puerto Escondido vai ser inesquecível!"
     },
     {
       "id": "cultura-coyoacan-frida",

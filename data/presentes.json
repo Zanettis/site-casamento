@@ -20,17 +20,17 @@
       "agradecimento": "¡Muchas gracias! Você está nos ajudando a viver dias mágicos em Puerto Escondido. Vamos brindar com você no coração!"
     },
     {
-      "id": "voo-balao-teotihuacan",
-      "categoria": "Cidade do México",
+      "id": "catamara-snorkel-isla-mujeres",
+      "categoria": "Caribe Mexicano",
       "destaque": false,
-      "titulo": "Voo de Balão ao Amanhecer em Teotihuacán",
-      "descricao": "Sobrevoar as históricas Pirâmides do Sol e da Lua no balão ao nascer do dia, seguido de um brinde de espumante nas alturas.",
+      "titulo": "Passeio de Catamarã & Snorkel",
+      "descricao": "Um dia navegando pelas águas azul-turquesa de Cancún até Isla Mujeres, com mergulho nos corais.",
       "tipo": "flexivel",
       "imagem": null,
-      "valoresSugeridos": [150, 300, 500, 800],
+      "valoresSugeridos": [120, 220, 380, 550],
       "valorSugeridoIndex": 1,
-      "valorMinimo": 50,
-      "agradecimento": "Obrigado por nos presentear com uma das vistas mais inesquecíveis da nossa viagem!"
+      "valorMinimo": 40,
+      "agradecimento": "¡Muchas gracias! Esse dia navegando pelo mar azul do Caribe vai ser inesquecível!"
     },
     {
       "id": "cultura-coyoacan-frida",

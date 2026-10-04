@@ -91,7 +91,7 @@
       "titulo": "Cota Livre — ¡Viva México!",
       "descricao": "Se preferir presentear com outro valor, escolha a quantia que fizer sentido pra você. Toda ajuda constrói essa lua de mel dos nossos sonhos.",
       "tipo": "flexivel",
-      "imagem": null,
+      "imagem": "assets/images/presente-cota-livre.jpg",
       "valoresSugeridos": [50, 100, 200, 500],
       "valorSugeridoIndex": 1,
       "valorMinimo": 20,

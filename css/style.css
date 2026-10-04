@@ -772,6 +772,15 @@ a:hover { color: var(--vermelho-flor); }
   flex-direction: column;
   border: 1px solid var(--line);
   background: var(--bg);
+  overflow: hidden;
+}
+
+.presentes-card__photo,
+.presentes-card__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
 }
 
 .presentes-card__body {
@@ -804,51 +813,77 @@ a:hover { color: var(--vermelho-flor); }
   line-height: 1.6;
 }
 
-.presentes-card__amounts { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+.presentes-card__amounts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
 .presentes-card__amounts[hidden] { display: none; }
 
-.presentes-card__chips { display: flex; flex-wrap: wrap; gap: 8px 8px; row-gap: 20px; }
+.presentes-card__chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
 
 .presentes-card__chip {
   position: relative;
-  padding: 8px 14px;
+  padding: 10px 6px;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   font-family: var(--font-body);
   cursor: pointer;
   border: 1.5px solid var(--verde-folha);
   background: transparent;
   color: var(--verde-folha);
-  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 42px;
+  box-sizing: border-box;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
-.presentes-card__chip.is-active { background: var(--verde-folha); color: var(--creme); }
-.presentes-card__chip.is-suggested::after {
+.presentes-card__chip:hover {
+  background: rgba(27, 67, 39, 0.08);
+}
+.presentes-card__chip.is-active {
+  background: var(--verde-folha);
+  color: var(--creme);
+}
+.presentes-card__chip.is-suggested::before {
   content: "sugerido";
   position: absolute;
-  bottom: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  top: -8px;
+  right: 6px;
+  background: var(--vermelho-flor);
+  color: #ffffff;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--vermelho-flor);
-  white-space: nowrap;
+  padding: 2px 6px;
+  border-radius: 999px;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  z-index: 2;
 }
 
 .presentes-card__custom { gap: 6px; }
-.presentes-card__custom label { font-size: 11px; font-weight: 600; }
+.presentes-card__custom label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink-muted); }
 .presentes-card__custom input {
   border: none;
-  border-bottom: 1px solid var(--line-strong);
+  border-bottom: 1.5px solid var(--line-strong);
   background: transparent;
-  padding: 8px 2px;
-  font-size: 15px;
+  padding: 10px 4px;
+  font-size: 16px; /* 16px evita zoom automático no Safari iOS */
   font-family: var(--font-body);
   color: var(--ink);
   outline: none;
   width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
 }
 .presentes-card__custom input:focus { border-color: var(--verde-folha); }
 
@@ -905,17 +940,22 @@ a:hover { color: var(--vermelho-flor); }
   text-align: left;
 }
 
-.presentes-card__copy-row { display: flex; gap: 8px; }
+.presentes-card__copy-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
 
 .presentes-card__copy-input {
   flex: 1;
   min-width: 0;
   border: 1px solid var(--line-strong);
-  background: transparent;
-  padding: 10px;
-  font-size: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px 12px;
+  font-size: 13px;
   font-family: var(--font-body), monospace;
   color: var(--ink-muted);
+  box-sizing: border-box;
 }
 
 .presentes-card__copy-btn {
@@ -930,9 +970,12 @@ a:hover { color: var(--vermelho-flor); }
   text-transform: uppercase;
   font-family: var(--font-body);
   cursor: pointer;
+  min-height: 44px;
+  box-sizing: border-box;
   transition: background 0.2s ease, color 0.2s ease;
 }
-.presentes-card__copy-btn:hover { background: var(--verde-folha); color: var(--creme); }
+.presentes-card__copy-btn:hover,
+.presentes-card__copy-btn:active { background: var(--verde-folha); color: var(--creme); }
 
 .presentes-card__copy-feedback { font-size: 13px; font-weight: 600; color: var(--verde-folha); margin: 10px 0 0; }
 .presentes-card__copy-feedback[hidden] { display: none; }
@@ -1232,9 +1275,36 @@ a:hover { color: var(--vermelho-flor); }
   .balsa-tips-grid { grid-template-columns: 1fr; gap: 20px; }
   .balsa-tips-section { padding: 24px 20px; }
   .balsa-card { padding: 28px 20px; }
-  .presentes-grid { grid-template-columns: 1fr; }
-  .presentes-hero { grid-template-columns: 1fr; }
-  .presentes-hero__body { padding: 28px 24px; }
+  .presentes-grid { grid-template-columns: 1fr; gap: 24px; }
+  .presentes-hero { grid-template-columns: 1fr; margin-top: 32px; }
+  .presentes-hero__photo,
+  .presentes-hero__photo img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+  }
+  .presentes-hero__body { padding: 26px 20px; }
+  .presentes-hero__title { font-size: 24px; }
+  .presentes-card__body { padding: 22px 18px; }
+  .presentes-card__title { font-size: 20px; }
+  .presentes-card__chips {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 10px;
+    margin-top: 12px;
+  }
+  .presentes-card__chip {
+    padding: 12px 8px;
+    font-size: 13.5px;
+    min-height: 46px;
+  }
+  .presentes-card__cta {
+    padding: 16px 20px;
+    font-size: 13.5px;
+  }
+  .presentes-card__photo,
+  .presentes-card__photo img {
+    aspect-ratio: 16 / 10;
+  }
   .presentes-progress { max-width: none; }
   .hospedagem-highlight { padding: 36px 20px; }
   .hospedagem-highlight__name { font-size: 26px; }
@@ -1244,3 +1314,17 @@ a:hover { color: var(--vermelho-flor); }
   .nav { padding: 16px 20px; }
   .nav__links { gap: 14px; }
 }
+
+@media (max-width: 360px) {
+  .presentes-card__chip {
+    font-size: 12px;
+    padding: 10px 4px;
+    letter-spacing: 0;
+  }
+  .presentes-card__chip.is-suggested::before {
+    font-size: 7.5px;
+    padding: 2px 4px;
+    right: 3px;
+  }
+}
+

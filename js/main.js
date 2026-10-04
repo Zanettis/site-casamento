@@ -93,18 +93,6 @@
     setInterval(tick, 1000);
   }
 
-  // ---------- FAQ accordion ----------
-  document.querySelectorAll(".faq-item").forEach((item) => {
-    const question = item.querySelector(".faq-item__question");
-    const icon = item.querySelector(".faq-item__icon");
-
-    question.addEventListener("click", () => {
-      const isOpen = item.classList.contains("is-open");
-      item.classList.toggle("is-open", !isOpen);
-      icon.textContent = isOpen ? "+" : "−";
-    });
-  });
-
   // ---------- RSVP: attending toggle & field visibility ----------
   const attendButtons = document.querySelectorAll(".attend-toggle__btn");
   const attendingInput = document.getElementById("rsvp-attending");

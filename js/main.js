@@ -316,6 +316,10 @@
     card.querySelector(titleSelector).textContent = presente.titulo;
     card.querySelector(textSelector).textContent = presente.descricao || "";
 
+    if (presente.categoria && presente.categoria.includes("Premium")) {
+      card.classList.add("is-premium");
+    }
+
     const whyEl = card.querySelector(".presentes-hero__why");
     if (whyEl) whyEl.textContent = presente.porque || "";
 

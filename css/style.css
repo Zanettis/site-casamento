@@ -798,6 +798,16 @@ a:hover { color: var(--vermelho-flor); }
   margin-bottom: 6px;
 }
 
+.presentes-card.is-premium {
+  border: 1.5px solid rgba(238, 39, 55, 0.35);
+  background: #fdfaf3;
+  box-shadow: 0 4px 18px rgba(238, 39, 55, 0.05);
+}
+.presentes-card.is-premium .presentes-card__category {
+  color: var(--vermelho-flor);
+  font-weight: 700;
+}
+
 .presentes-card__title {
   font-family: var(--font-serif);
   font-weight: 600;
@@ -818,10 +828,15 @@ a:hover { color: var(--vermelho-flor); }
 
 .presentes-card__chips {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   margin-top: 10px;
   margin-bottom: 4px;
+}
+
+.presentes-hero .presentes-card__chips {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .presentes-card__chip {
@@ -1241,8 +1256,8 @@ a:hover { color: var(--vermelho-flor); }
   .presentes-hero__body { padding: 26px 20px; }
   .presentes-hero__title { font-size: 24px; }
   .presentes-card__body { padding: 22px 18px; }
-  .presentes-card__title { font-size: 20px; }
-  .presentes-card__chips {
+  .presentes-card__chips,
+  .presentes-hero .presentes-card__chips {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px 10px;
     margin-top: 12px;

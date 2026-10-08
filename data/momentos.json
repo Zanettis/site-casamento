@@ -22,10 +22,10 @@
   },
   {
     "id": 4,
-    "src": "assets/images/galeria/momento-03.jpg",
-    "alt": "Marina e Pedro comemorando e se beijando em uma festa",
-    "titulo": "Noite de festa",
-    "legenda": "Celebrando a vida e o amor"
+    "src": "assets/images/galeria/momento-09.jpg",
+    "alt": "Marina e Pedro se beijando sorrindo em um show ao vivo",
+    "titulo": "Música e amor",
+    "legenda": "Nossa trilha sonora a dois"
   },
   {
     "id": 5,
@@ -36,20 +36,27 @@
   },
   {
     "id": 6,
+    "src": "assets/images/galeria/momento-03.jpg",
+    "alt": "Marina e Pedro comemorando e se beijando em uma festa",
+    "titulo": "Noite de festa",
+    "legenda": "Celebrando a vida e o amor"
+  },
+  {
+    "id": 7,
     "src": "assets/images/galeria/momento-07.jpg",
     "alt": "Marina e Pedro em frente ao espelho com plantas",
     "titulo": "Sintonia",
     "legenda": "Nosso estilo, parceria e leveza"
   },
   {
-    "id": 7,
+    "id": 8,
     "src": "assets/images/galeria/momento-04.jpg",
     "alt": "Marina e Pedro em selfie carinhosa no espelho do elevador",
     "titulo": "Nosso dia a dia",
     "legenda": "Carinho e cumplicidade"
   },
   {
-    "id": 8,
+    "id": 9,
     "src": "assets/images/galeria/momento-05.jpg",
     "alt": "Marina e Pedro sorrindo sob o sol tropical",
     "titulo": "Dias ensolarados",

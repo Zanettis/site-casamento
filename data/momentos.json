@@ -2,35 +2,56 @@
   {
     "id": 1,
     "src": "assets/images/galeria/momento-01.jpg",
-    "alt": "Marina e Pedro na praia",
+    "alt": "Marina e Pedro na praia paradisíaca com ilha ao fundo",
     "titulo": "Paraíso a dois",
     "legenda": "Dias de sol, mar e paz"
   },
   {
     "id": 2,
+    "src": "assets/images/galeria/momento-06.jpg",
+    "alt": "Marina e Pedro no templo do Buda Dourado em Bangkok",
+    "titulo": "Grandes viagens",
+    "legenda": "Descobrindo o mundo juntos na Tailândia"
+  },
+  {
+    "id": 3,
     "src": "assets/images/galeria/momento-02.jpg",
-    "alt": "Marina e Pedro remando de caiaque",
+    "alt": "Marina e Pedro remando de caiaque em águas verdes",
     "titulo": "Aventuras juntos",
     "legenda": "Explorando a natureza de caiaque"
   },
   {
-    "id": 3,
+    "id": 4,
     "src": "assets/images/galeria/momento-03.jpg",
-    "alt": "Marina e Pedro comemorando em festa",
+    "alt": "Marina e Pedro comemorando e se beijando em uma festa",
     "titulo": "Noite de festa",
     "legenda": "Celebrando a vida e o amor"
   },
   {
-    "id": 4,
+    "id": 5,
+    "src": "assets/images/galeria/momento-08.jpg",
+    "alt": "Filhotinho do casal na grama verde",
+    "titulo": "Nosso pequeno",
+    "legenda": "O amor de quatro patas da família"
+  },
+  {
+    "id": 6,
+    "src": "assets/images/galeria/momento-07.jpg",
+    "alt": "Marina e Pedro em frente ao espelho com plantas",
+    "titulo": "Sintonia",
+    "legenda": "Nosso estilo, parceria e leveza"
+  },
+  {
+    "id": 7,
     "src": "assets/images/galeria/momento-04.jpg",
-    "alt": "Marina e Pedro selfie no espelho",
+    "alt": "Marina e Pedro em selfie carinhosa no espelho do elevador",
     "titulo": "Nosso dia a dia",
     "legenda": "Carinho e cumplicidade"
   },
   {
-    "id": 5,
+    "id": 8,
     "src": "assets/images/galeria/momento-05.jpg",
-    "alt": "Marina e Pedro sorrindo sob o sol",
+    "alt": "Marina e Pedro sorrindo sob o sol tropical",
     "titulo": "Dias ensolarados",
     "legenda": "Sempre com esse sorriso"
   }

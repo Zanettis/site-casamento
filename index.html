@@ -488,20 +488,54 @@
     </div>
   </section>
 
-  <!-- ============ GALERIA ============ -->
+  <!-- ============ GALERIA / MOMENTOS ============ -->
   <section id="galeria" class="section galeria-section">
     <div class="section__head">
-      <p class="eyebrow reveal">Galeria</p>
+      <p class="eyebrow reveal">Nossa trajetória</p>
       <h2 class="section__title reveal">Momentos</h2>
+      <p class="section__text reveal">Um pouquinho das nossas viagens, celebrações e dos dias que construíram a nossa história até aqui.</p>
     </div>
 
-    <div class="gallery-grid">
-      <div class="ph ph--green photo-placeholder reveal" style="aspect-ratio:1;"><span>ensaio pré-wedding</span></div>
-      <div class="ph ph--cream photo-placeholder reveal" style="aspect-ratio:1;"><span>praia do curral</span></div>
-      <div class="ph ph--terracotta photo-placeholder reveal" style="aspect-ratio:1;"><span>coqueiros</span></div>
-      <div class="ph ph--dark photo-placeholder reveal" style="aspect-ratio:1;"><span>pôr do sol em ilhabela</span></div>
-      <div class="ph ph--cream photo-placeholder reveal" style="aspect-ratio:1;"><span>noivos</span></div>
-      <div class="ph ph--green photo-placeholder reveal" style="aspect-ratio:1;"><span>flores tropicais</span></div>
+    <div class="gallery-grid" id="gallery-grid">
+      <figure class="gallery-item reveal" data-index="0" tabindex="0" role="button" aria-label="Ver foto: Paraíso a dois">
+        <img src="assets/images/galeria/momento-01.jpg" alt="Marina e Pedro na praia com ilha rochosa ao fundo" loading="lazy">
+        <figcaption class="gallery-item__caption">
+          <span class="gallery-item__title">Paraíso a dois</span>
+          <span class="gallery-item__subtitle">Dias de sol, mar e paz</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item reveal" data-index="1" tabindex="0" role="button" aria-label="Ver foto: Aventuras juntos">
+        <img src="assets/images/galeria/momento-02.jpg" alt="Marina e Pedro remando de caiaque em águas verdes" loading="lazy">
+        <figcaption class="gallery-item__caption">
+          <span class="gallery-item__title">Aventuras juntos</span>
+          <span class="gallery-item__subtitle">Explorando a natureza de caiaque</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item reveal" data-index="2" tabindex="0" role="button" aria-label="Ver foto: Noite de festa">
+        <img src="assets/images/galeria/momento-03.jpg" alt="Marina e Pedro comemorando e se beijando em uma festa" loading="lazy">
+        <figcaption class="gallery-item__caption">
+          <span class="gallery-item__title">Noite de festa</span>
+          <span class="gallery-item__subtitle">Celebrando a vida e o amor</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item reveal" data-index="3" tabindex="0" role="button" aria-label="Ver foto: Nosso dia a dia">
+        <img src="assets/images/galeria/momento-04.jpg" alt="Marina e Pedro em selfie carinhosa no espelho do elevador" loading="lazy">
+        <figcaption class="gallery-item__caption">
+          <span class="gallery-item__title">Nosso dia a dia</span>
+          <span class="gallery-item__subtitle">Carinho e cumplicidade</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item reveal" data-index="4" tabindex="0" role="button" aria-label="Ver foto: Dias ensolarados">
+        <img src="assets/images/galeria/momento-05.jpg" alt="Marina e Pedro sorrindo sob o sol tropical" loading="lazy">
+        <figcaption class="gallery-item__caption">
+          <span class="gallery-item__title">Dias ensolarados</span>
+          <span class="gallery-item__subtitle">Sempre com esse sorriso</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -513,6 +547,26 @@
   <p class="footer__date">20 · 02 · 2027 — Ilhabela, SP</p>
   <p class="footer__thanks">Feito com carinho para o nosso grande dia</p>
 </footer>
+
+<!-- Lightbox Modal para visualização das fotos em tela cheia -->
+<div id="gallery-lightbox" class="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualizador de fotos">
+  <div class="lightbox__backdrop" data-action="close"></div>
+  <div class="lightbox__content">
+    <button type="button" class="lightbox__close" data-action="close" aria-label="Fechar visualização">&times;</button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" data-action="prev" aria-label="Foto anterior">&#8249;</button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" data-action="next" aria-label="Próxima foto">&#8250;</button>
+
+    <div class="lightbox__image-wrap">
+      <img src="" alt="" class="lightbox__img" id="lightbox-img">
+    </div>
+
+    <div class="lightbox__meta">
+      <span class="lightbox__counter" id="lightbox-counter">1 / 5</span>
+      <p class="lightbox__title" id="lightbox-title"></p>
+      <p class="lightbox__subtitle" id="lightbox-subtitle"></p>
+    </div>
+  </div>
+</div>
 
 <!-- iframe oculto usado para enviar o RSVP ao Google Forms sem sair da página -->
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "src": "assets/images/galeria/momento-01.jpg",
+    "alt": "Marina e Pedro na praia",
+    "titulo": "Paraíso a dois",
+    "legenda": "Dias de sol, mar e paz"
+  },
+  {
+    "id": 2,
+    "src": "assets/images/galeria/momento-02.jpg",
+    "alt": "Marina e Pedro remando de caiaque",
+    "titulo": "Aventuras juntos",
+    "legenda": "Explorando a natureza de caiaque"
+  },
+  {
+    "id": 3,
+    "src": "assets/images/galeria/momento-03.jpg",
+    "alt": "Marina e Pedro comemorando em festa",
+    "titulo": "Noite de festa",
+    "legenda": "Celebrando a vida e o amor"
+  },
+  {
+    "id": 4,
+    "src": "assets/images/galeria/momento-04.jpg",
+    "alt": "Marina e Pedro selfie no espelho",
+    "titulo": "Nosso dia a dia",
+    "legenda": "Carinho e cumplicidade"
+  },
+  {
+    "id": 5,
+    "src": "assets/images/galeria/momento-05.jpg",
+    "alt": "Marina e Pedro sorrindo sob o sol",
+    "titulo": "Dias ensolarados",
+    "legenda": "Sempre com esse sorriso"
+  }
+]

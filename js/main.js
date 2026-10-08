@@ -494,4 +494,117 @@
       { passive: true }
     );
   }
+
+  // ---------- Galeria / Momentos & Lightbox ----------
+  const galleryGrid = document.getElementById("gallery-grid");
+  const lightbox = document.getElementById("gallery-lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxTitle = document.getElementById("lightbox-title");
+  const lightboxSubtitle = document.getElementById("lightbox-subtitle");
+  const lightboxCounter = document.getElementById("lightbox-counter");
+
+  if (galleryGrid && lightbox) {
+    let galleryItems = [];
+    let currentIndex = 0;
+
+    const coletarItensGaleria = () => {
+      const figures = galleryGrid.querySelectorAll(".gallery-item");
+      galleryItems = Array.from(figures).map((fig) => {
+        const img = fig.querySelector("img");
+        const title = fig.querySelector(".gallery-item__title");
+        const subtitle = fig.querySelector(".gallery-item__subtitle");
+        return {
+          src: img ? img.src : "",
+          alt: img ? img.alt : "",
+          title: title ? title.textContent : "",
+          subtitle: subtitle ? subtitle.textContent : "",
+        };
+      });
+    };
+
+    coletarItensGaleria();
+
+    const atualizarLightbox = (idx) => {
+      if (idx < 0) idx = galleryItems.length - 1;
+      if (idx >= galleryItems.length) idx = 0;
+      currentIndex = idx;
+
+      const item = galleryItems[currentIndex];
+      if (!item) return;
+
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
+      lightboxTitle.textContent = item.title;
+      lightboxSubtitle.textContent = item.subtitle;
+      lightboxCounter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
+    };
+
+    const abrirLightbox = (idx) => {
+      coletarItensGaleria();
+      atualizarLightbox(idx);
+      lightbox.hidden = false;
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    const fecharLightbox = () => {
+      lightbox.hidden = true;
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    galleryGrid.addEventListener("click", (e) => {
+      const fig = e.target.closest(".gallery-item");
+      if (!fig) return;
+      const idx = Array.from(galleryGrid.querySelectorAll(".gallery-item")).indexOf(fig);
+      if (idx !== -1) abrirLightbox(idx);
+    });
+
+    galleryGrid.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        const fig = e.target.closest(".gallery-item");
+        if (fig) {
+          e.preventDefault();
+          const idx = Array.from(galleryGrid.querySelectorAll(".gallery-item")).indexOf(fig);
+          if (idx !== -1) abrirLightbox(idx);
+        }
+      }
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      const action = e.target.dataset.action;
+      if (action === "close") fecharLightbox();
+      else if (action === "prev") atualizarLightbox(currentIndex - 1);
+      else if (action === "next") atualizarLightbox(currentIndex + 1);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") fecharLightbox();
+      else if (e.key === "ArrowLeft") atualizarLightbox(currentIndex - 1);
+      else if (e.key === "ArrowRight") atualizarLightbox(currentIndex + 1);
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    lightbox.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      { passive: true }
+    );
+    lightbox.addEventListener(
+      "touchend",
+      (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) atualizarLightbox(currentIndex - 1);
+          else atualizarLightbox(currentIndex + 1);
+        }
+      },
+      { passive: true }
+    );
+  }
 })();

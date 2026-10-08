@@ -1,40 +1,45 @@
 # Imagens
 
 O hero já usa um vídeo real (`assets/video/hero.mp4`) com `hero-poster.jpg` como
-capa/fallback (gerado automaticamente a partir de um frame do vídeo — pode substituir
-por outra imagem se quiser uma capa diferente). A seção "Nossa história" também já
-usa fotos reais (`historia-1.jpg`, `historia-2.jpg`). As demais seções ainda usam
-placeholders visuais em CSS (padrão listrado com uma legenda no meio).
+capa/fallback. A seção "Nossa história" também já usa fotos reais (`historia-1.jpg`, `historia-2.jpg`).
+A seção "Presentes" usa fotos reais para o destaque de Puerto Escondido e Cota Livre.
+A seção "Momentos" agora conta com uma galeria de fotos reais e visualizador Lightbox em tela cheia!
 
-## Onde cada placeholder está no `index.html`
+## Onde cada imagem está organizada
 
-| Seção | Placeholder(s) | Nome de arquivo |
+| Seção | Status | Diretório e Arquivos |
 |---|---|---|
-| Nossa história (`#historia`) | ✅ já usa fotos reais | `historia-1.jpg` (primeiro encontro), `historia-2.jpg` (pedido) |
-| Presentes (`#presentes`) | ✅ Hero e Cota Livre usam fotos reais | `presente-puerto-escondido.jpg`, `presente-cota-livre.jpg` |
-| Data e local (`#data-local`) | 1 mapa (ou screenshot do Google Maps) | `mapa.jpg` |
-| Hospedagem (`#hospedagem`) | 3 fotos (uma por hospedagem) | `hospedagem-1.jpg`, `hospedagem-2.jpg`, `hospedagem-3.jpg` |
-| Galeria (`#galeria`) | 6 fotos | `galeria-1.jpg` … `galeria-6.jpg` |
+| Nossa história (`#historia`) | ✅ Fotos reais | `assets/images/historia-1.jpg`, `historia-2.jpg` |
+| Presentes (`#presentes`) | ✅ Fotos reais | `assets/images/presente-puerto-escondido.jpg`, `presente-cota-livre.jpg` |
+| Momentos / Galeria (`#galeria`) | ✅ Fotos reais + Lightbox | `assets/images/galeria/momento-01.jpg` até `momento-05.jpg` (controlado em `data/momentos.json` e `index.html`) |
+| Data e local (`#data-local`) | Mapa interativo Google Maps | Incorporado via iframe |
+| Hospedagem (`#hospedagem`) | Destaque Casa di Sirena + Pousadas | Links diretos |
 
-## Como trocar um placeholder por uma foto real
+## Como adicionar novas fotos na seção de Momentos
 
-Cada placeholder é uma `<div>` com classes `ph ph--cor photo-placeholder`. Para trocar
-por uma foto, substitua a `div` por uma `<img>` (ou adicione a imagem como
-`background-image` na mesma div) e remova as classes `ph`/`ph--cor` e o `<span>` de
-legenda. Exemplo, na seção história:
-
-```html
-<!-- antes -->
-<div class="ph ph--cream photo-placeholder reveal" style="aspect-ratio:4/5;">
-  <span>foto — primeiro encontro</span>
-</div>
-
-<!-- depois -->
-<img class="reveal" style="aspect-ratio:4/5;object-fit:cover;" src="assets/images/historia-1.jpg" alt="">
-```
+1. **Salvar a foto:** Salve o arquivo de imagem na pasta `assets/images/galeria/` (ex: `momento-06.jpg`, `momento-07.jpg`).
+2. **Adicionar no `data/momentos.json`:** Adicione um item com título e legenda:
+   ```json
+   {
+     "id": 6,
+     "src": "assets/images/galeria/momento-06.jpg",
+     "alt": "Descrição da foto",
+     "titulo": "Título do momento",
+     "legenda": "Pequena frase ou local"
+   }
+   ```
+3. **Adicionar no `index.html`:** Dentro de `<div class="gallery-grid" id="gallery-grid">`:
+   ```html
+   <figure class="gallery-item reveal" data-index="5" tabindex="0" role="button" aria-label="Ver foto: Título">
+     <img src="assets/images/galeria/momento-06.jpg" alt="Descrição da foto" loading="lazy">
+     <figcaption class="gallery-item__caption">
+       <span class="gallery-item__title">Título do momento</span>
+       <span class="gallery-item__subtitle">Pequena frase ou local</span>
+     </figcaption>
+   </figure>
+   ```
 
 ## Recomendações
-
-- Comprima as fotos (JPEG qualidade ~75–80%) para manter o carregamento rápido.
-- Fotos de seção cheia (hero) até ~2000px de largura já são suficientes.
-- Use `loading="lazy"` em fotos abaixo da dobra (hospedagem, galeria) para melhorar performance.
+- Prefira fotos verticais (proporção 4:5 ou 3:4) para manter a harmonia visual da grade.
+- Comprima as fotos (JPEG qualidade ~75–80%, entre 150KB e 300KB) para garantir carregamento instantâneo no celular.
+- O lightbox em tela cheia funciona automaticamente com qualquer foto adicionada com a classe `.gallery-item`.

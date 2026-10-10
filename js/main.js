@@ -633,15 +633,22 @@
   };
 
   if (presentesGrid && presentesCardTemplate) {
+    // Renderiza de forma SÍNCRONA e IMEDIATA com dados garantidos:
+    carregarPresentes(FALLBACK_PRESENTES);
+
+    // Busca em segundo plano se houver atualizações de progresso no servidor:
     fetch("data/presentes.json")
       .then((res) => {
         if (!res.ok) throw new Error("Status " + res.status);
         return res.json();
       })
-      .then((data) => carregarPresentes(data))
+      .then((data) => {
+        if (data && data.progresso) {
+          renderProgresso(data.progresso);
+        }
+      })
       .catch((err) => {
-        console.warn("Carregando lista de presentes pelo fallback:", err);
-        carregarPresentes(FALLBACK_PRESENTES);
+        console.warn("Fetch de progresso falhou, mantendo dados locais:", err);
       });
   }
 

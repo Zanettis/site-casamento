@@ -1477,6 +1477,12 @@ a:hover { color: var(--vermelho-flor); }
 
 /* ===================== Responsive ===================== */
 @media (max-width: 820px) {
+  /* Garante visibilidade e renderizacao imediata no mobile */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .story-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; }
   .story-order-1, .story-order-2 { order: initial; }
   .info-grid { grid-template-columns: 1fr; }
@@ -1512,7 +1518,18 @@ a:hover { color: var(--vermelho-flor); }
   .balsa-tip-item p { font-size: 13px; line-height: 1.6; }
 
   /* Presentes mobile */
-  .presentes-grid { grid-template-columns: 1fr; gap: 24px; }
+  .presentes-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .presentes-card {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   .presentes-hero { grid-template-columns: 1fr; margin-top: 32px; }
   .presentes-hero__photo,
   .presentes-hero__photo img {

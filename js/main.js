@@ -20,7 +20,7 @@
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.02, rootMargin: "0px 0px 80px 0px" }
     );
 
     revealEls.forEach((el) => observer.observe(el));
@@ -399,11 +399,19 @@
       atualizarRotuloCta();
 
       const payload = buildPixPayload(valorEscolhido, presente.titulo);
-      const qr = qrcode(0, "M");
-      qr.addData(payload);
-      qr.make();
+      if (typeof qrcode === "function") {
+        try {
+          const qr = qrcode(0, "M");
+          qr.addData(payload);
+          qr.make();
+          qrWrap.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 2, scalable: true });
+        } catch (_) {
+          qrWrap.innerHTML = "";
+        }
+      } else {
+        qrWrap.innerHTML = "";
+      }
 
-      qrWrap.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 2, scalable: true });
       amountLabel.textContent = `Valor: ${formatBRL(valorEscolhido)}`;
       if (thanksEl) thanksEl.textContent = gerarAgradecimento(presente);
       copyInput.value = payload;
@@ -414,16 +422,35 @@
 
     copyBtn.addEventListener("click", () => {
       copyInput.select();
-      navigator.clipboard
-        .writeText(copyInput.value)
-        .then(() => {
-          copyFeedback.textContent = "Código copiado!";
+      copyInput.setSelectionRange(0, 99999);
+
+      const setSuccess = () => {
+        copyFeedback.textContent = "✓ Código copiado com sucesso! Cole no app do seu banco.";
+        copyFeedback.hidden = false;
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard
+          .writeText(copyInput.value)
+          .then(setSuccess)
+          .catch(() => {
+            try {
+              document.execCommand("copy");
+              setSuccess();
+            } catch (_) {
+              copyFeedback.textContent = "Selecione o código acima e copie manualmente.";
+              copyFeedback.hidden = false;
+            }
+          });
+      } else {
+        try {
+          document.execCommand("copy");
+          setSuccess();
+        } catch (_) {
+          copyFeedback.textContent = "Selecione o código acima e copie manualmente.";
           copyFeedback.hidden = false;
-        })
-        .catch(() => {
-          copyFeedback.textContent = "Selecione e copie manualmente.";
-          copyFeedback.hidden = false;
-        });
+        }
+      }
     });
 
     container.appendChild(node);
@@ -447,24 +474,174 @@
       textSelector: ".presentes-hero__text",
     });
 
-  if (presentesGrid && presentesCardTemplate && typeof qrcode === "function") {
+  const FALLBACK_PRESENTES = {
+    progresso: { arrecadado: 0, meta: 50000, atualizadoEm: "2026-10-07" },
+    presentes: [
+      {
+        id: "estadia-puerto-escondido",
+        categoria: "Puerto Escondido · Destaque",
+        destaque: true,
+        titulo: "Hospedagem à Beira-Mar em Puerto Escondido",
+        descricao: "Nosso refúgio dos sonhos na costa do Pacífico: acordar ouvindo o mar, relaxar sob os coqueiros em La Punta e assistir ao pôr do sol inesquecível da praia nos nossos primeiros dias de casados.",
+        porque: "É o nosso momento de desacelerar juntos, viver a praia e celebrar o início desse novo capítulo com a essência acolhedora e charmosa de Oaxaca.",
+        tipo: "flexivel",
+        imagem: "assets/images/presente-puerto-escondido.jpg",
+        valoresSugeridos: [500, 1500, 3000, 5000],
+        valorSugeridoIndex: 1,
+        valorMinimo: 100,
+        agradecimento: "¡Muchas gracias! Você está nos ajudando a viver dias mágicos em Puerto Escondido. Vamos brindar com você no coração!"
+      },
+      {
+        id: "passagens-aereas-mexico",
+        categoria: "Experiência Premium",
+        destaque: false,
+        titulo: "Passagens Aéreas dos Noivos — Voo México",
+        descricao: "As passagens que dão asas à nossa lua de mel: o embarque rumo ao México logo após o grande dia em Ilhabela, iniciando a viagem da nossa vida com todo o conforto e carinho.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [1000, 2500, 5000, 8000],
+        valorSugeridoIndex: 2,
+        valorMinimo: 200,
+        agradecimento: "¡Muchas gracias! Você está tornando o voo dos noivos realidade! Vamos brindar a você lá no alto das nuvens!"
+      },
+      {
+        id: "suite-master-pacifico",
+        categoria: "Experiência Premium",
+        destaque: false,
+        titulo: "Semana em Suíte Master com Vista para o Pacífico",
+        descricao: "Nossa estadia completa em suíte privativa de frente para o mar aberto, com piscina privativa, mordomia e vista cinematográfica para o pôr do sol de Puerto Escondido.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [1200, 2500, 5000, 7500],
+        valorSugeridoIndex: 2,
+        valorMinimo: 250,
+        agradecimento: "¡Qué regalo increíble! Você proporcionou momentos inesquecíveis da nossa lua de mel. Nosso eterno agradecimento!"
+      },
+      {
+        id: "barco-snorkel-puerto-escondido",
+        categoria: "Puerto Escondido",
+        destaque: false,
+        titulo: "Passeio de Barco & Snorkel no Pacífico",
+        descricao: "Um dia navegando pela deslumbrante costa de Puerto Escondido, com snorkel nas enseadas de corais e observação de golfinhos e vida marinha.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [200, 380, 600, 950],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "¡Muchas gracias! Esse dia navegando pelas águas do Pacífico em Puerto Escondido vai ser inesquecível!"
+      },
+      {
+        id: "cultura-coyoacan-frida",
+        categoria: "Cidade do México",
+        destaque: false,
+        titulo: "Tarde na Casa Azul de Frida Kahlo & Coyoacán",
+        descricao: "Passeio cultural pelas ruas floridas e charmosas de Coyoacán, visita à icônica Casa Azul de Frida Kahlo e parada para churros tradicionais e café.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [200, 360, 580, 900],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "¡Gracias! Mal podemos esperar para viver a história e a arte mexicana de perto."
+      },
+      {
+        id: "tour-gastronomico-moles-oaxaca",
+        categoria: "Oaxaca",
+        destaque: false,
+        titulo: "Tour Gastronômico de Moles & Mercados de Oaxaca",
+        descricao: "Explorar a capital gastronômica do México: provar os lendários moles oaxaquenhos, tlayudas crocantes e o tradicional chocolate artesanal no Mercado 20 de Noviembre.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [250, 420, 680, 1100],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "¡Muchas gracias! Esse sabor autêntico de Oaxaca vai ficar marcado na nossa memória."
+      },
+      {
+        id: "hierve-el-agua-mezcal",
+        categoria: "Oaxaca",
+        destaque: false,
+        titulo: "Hierve el Agua & Degustação em Palenque de Mezcal",
+        descricao: "Banho nas piscinas naturais infinitas de calcário com vista panorâmica para as montanhas e visita a uma destilaria artesanal com degustação de mezcal.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [250, 450, 750, 1200],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "Um brinde com mezcal artesanal à sua saúde e ao seu carinho!"
+      },
+      {
+        id: "soltura-tartarugas-marinhas",
+        categoria: "Puerto Escondido",
+        destaque: false,
+        titulo: "Soltura de Tartaruguinhas Marinhas no Pacífico",
+        descricao: "Participar de um projeto de preservação ecológica ajudando filhotinhos de tartaruga marinha a darem seus primeiros passos rumo ao mar ao entardecer.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [180, 350, 550, 850],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "Obrigado por nos ajudar a viver esse momento tão puro e especial na natureza!"
+      },
+      {
+        id: "jantar-romantico-pujol",
+        categoria: "Cidade do México",
+        destaque: false,
+        titulo: "Jantar a Dois no Pujol — Alta Gastronomia Mexicana",
+        descricao: "Uma noite memorável a dois no aclamado Pujol, considerado um dos melhores restaurantes do mundo, degustando o famoso Mole Madre e menu degustação contemporâneo.",
+        tipo: "flexivel",
+        imagem: null,
+        valoresSugeridos: [250, 440, 750, 1300],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "¡Muchísimas gracias! Um brinde muito especial a você nessa noite inesquecível na Cidade do México!"
+      },
+      {
+        id: "cota-livre",
+        categoria: "Contribuição livre",
+        destaque: false,
+        titulo: "Cota Livre — ¡Viva México!",
+        descricao: "Se preferir presentear com outro valor, escolha a quantia que fizer sentido pra você. Toda ajuda constrói essa lua de mel dos nossos sonhos.",
+        tipo: "flexivel",
+        imagem: "assets/images/presente-cota-livre.jpg",
+        valoresSugeridos: [200, 400, 1500, 5000],
+        valorSugeridoIndex: 1,
+        valorMinimo: 50,
+        agradecimento: "Muito obrigado pelo carinho! Cada contribuição faz parte dessa viagem inesquecível."
+      }
+    ]
+  };
+
+  const carregarPresentes = (data) => {
+    if (!data) return;
+    renderProgresso(data.progresso);
+
+    const presentes = data.presentes || [];
+    const presenteDestaque = presentes.find((p) => p.destaque);
+    const presentesRegulares = presentes.filter((p) => !p.destaque);
+
+    if (presentesHeroContainer) {
+      presentesHeroContainer.innerHTML = "";
+      if (presenteDestaque && presentesHeroTemplate) {
+        renderPresenteHero(presenteDestaque);
+      }
+    }
+
+    if (presentesGrid) {
+      presentesGrid.innerHTML = "";
+      presentesRegulares.forEach(renderPresenteCard);
+    }
+  };
+
+  if (presentesGrid && presentesCardTemplate) {
     fetch("data/presentes.json")
-      .then((res) => res.json())
-      .then((data) => {
-        renderProgresso(data.progresso);
-
-        const presentes = data.presentes || [];
-        const presenteDestaque = presentes.find((p) => p.destaque);
-        const presentesRegulares = presentes.filter((p) => !p.destaque);
-
-        if (presenteDestaque && presentesHeroContainer && presentesHeroTemplate) {
-          renderPresenteHero(presenteDestaque);
-        }
-        presentesRegulares.forEach(renderPresenteCard);
+      .then((res) => {
+        if (!res.ok) throw new Error("Status " + res.status);
+        return res.json();
       })
-      .catch(() => {
-        presentesGrid.textContent =
-          "Não foi possível carregar a lista de presentes no momento.";
+      .then((data) => carregarPresentes(data))
+      .catch((err) => {
+        console.warn("Carregando lista de presentes pelo fallback:", err);
+        carregarPresentes(FALLBACK_PRESENTES);
       });
   }
 

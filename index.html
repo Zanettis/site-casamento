@@ -223,7 +223,7 @@
     <div id="presentes-hero"></div>
 
     <p class="presentes-grid__label reveal">Outras formas de ajudar</p>
-    <div class="presentes-grid reveal" id="presentes-grid">
+    <div class="presentes-grid" id="presentes-grid">
       <!-- Cards gerados via JS a partir de data/presentes.json -->
     </div>
   </section>
@@ -249,15 +249,22 @@
         <button type="button" class="presentes-card__cta">Presentear via Pix</button>
 
         <div class="presentes-card__pix" hidden>
-          <div class="presentes-card__qr"></div>
           <p class="presentes-card__amount-label"></p>
           <p class="presentes-card__thanks"></p>
-          <label class="presentes-card__copy-label">Pix copia e cola</label>
-          <div class="presentes-card__copy-row">
-            <input type="text" class="presentes-card__copy-input" readonly>
-            <button type="button" class="presentes-card__copy-btn">Copiar</button>
+
+          <div class="presentes-card__copy-box">
+            <span class="presentes-card__copy-label">Pix Copia e Cola</span>
+            <div class="presentes-card__copy-row">
+              <input type="text" class="presentes-card__copy-input" readonly>
+              <button type="button" class="presentes-card__copy-btn">Copiar código Pix</button>
+            </div>
+            <p class="presentes-card__copy-feedback" hidden>✓ Código copiado com sucesso!</p>
           </div>
-          <p class="presentes-card__copy-feedback" hidden>Código copiado!</p>
+
+          <div class="presentes-card__qr-box">
+            <span class="presentes-card__qr-title">Ou escaneie pelo aplicativo do seu banco:</span>
+            <div class="presentes-card__qr"></div>
+          </div>
         </div>
       </div>
     </article>
@@ -282,15 +289,22 @@
         <button type="button" class="presentes-card__cta">Presentear via Pix</button>
 
         <div class="presentes-card__pix" hidden>
-          <div class="presentes-card__qr"></div>
           <p class="presentes-card__amount-label"></p>
           <p class="presentes-card__thanks"></p>
-          <label class="presentes-card__copy-label">Pix copia e cola</label>
-          <div class="presentes-card__copy-row">
-            <input type="text" class="presentes-card__copy-input" readonly>
-            <button type="button" class="presentes-card__copy-btn">Copiar</button>
+
+          <div class="presentes-card__copy-box">
+            <span class="presentes-card__copy-label">Pix Copia e Cola</span>
+            <div class="presentes-card__copy-row">
+              <input type="text" class="presentes-card__copy-input" readonly>
+              <button type="button" class="presentes-card__copy-btn">Copiar código Pix</button>
+            </div>
+            <p class="presentes-card__copy-feedback" hidden>✓ Código copiado com sucesso!</p>
           </div>
-          <p class="presentes-card__copy-feedback" hidden>Código copiado!</p>
+
+          <div class="presentes-card__qr-box">
+            <span class="presentes-card__qr-title">Ou escaneie pelo aplicativo do seu banco:</span>
+            <div class="presentes-card__qr"></div>
+          </div>
         </div>
       </div>
     </article>

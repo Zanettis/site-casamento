@@ -782,6 +782,29 @@ a:hover { color: var(--vermelho-flor); }
   object-fit: cover;
   display: block;
 }
+.presentes-card__photo.photo-placeholder {
+  background: linear-gradient(135deg, rgba(39, 93, 56, 0.08) 0%, rgba(227, 203, 152, 0.3) 100%);
+  border-bottom: 1px solid var(--line);
+  color: var(--verde-folha);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.presentes-card__photo.photo-placeholder::before {
+  content: "🎁";
+  font-size: 26px;
+  line-height: 1;
+}
+.presentes-card__photo.photo-placeholder span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
 
 .presentes-card__body {
   display: flex;
@@ -927,21 +950,27 @@ a:hover { color: var(--vermelho-flor); }
 }
 .presentes-card__pix[hidden] { display: none; }
 
-.presentes-card__qr { max-width: 200px; margin: 0 auto 14px; }
-.presentes-card__qr svg { display: block; width: 100%; height: auto; }
-
 .presentes-card__amount-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--ink);
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .presentes-card__thanks {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.6;
   color: var(--verde-folha);
   margin: 0 0 18px;
+}
+
+.presentes-card__copy-box {
+  background: rgba(39, 93, 56, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .presentes-card__copy-label {
@@ -950,9 +979,8 @@ a:hover { color: var(--vermelho-flor); }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 6px;
-  text-align: left;
+  color: var(--verde-folha);
+  margin-bottom: 8px;
 }
 
 .presentes-card__copy-row {
@@ -965,35 +993,67 @@ a:hover { color: var(--vermelho-flor); }
   flex: 1;
   min-width: 0;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.5);
+  background: #ffffff;
   padding: 10px 12px;
   font-size: 13px;
-  font-family: var(--font-body), monospace;
-  color: var(--ink-muted);
+  font-family: monospace;
+  color: var(--ink);
   box-sizing: border-box;
+  border-radius: 2px;
 }
 
 .presentes-card__copy-btn {
   flex: none;
-  padding: 10px 16px;
-  background: transparent;
+  padding: 10px 18px;
+  background: var(--verde-folha);
   border: 1.5px solid var(--verde-folha);
-  color: var(--verde-folha);
+  color: #ffffff;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-family: var(--font-body);
   cursor: pointer;
   min-height: 44px;
   box-sizing: border-box;
-  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 2px;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 .presentes-card__copy-btn:hover,
-.presentes-card__copy-btn:active { background: var(--verde-folha); color: var(--creme); }
+.presentes-card__copy-btn:active {
+  background: var(--verde-escuro);
+  border-color: var(--verde-escuro);
+}
 
-.presentes-card__copy-feedback { font-size: 13px; font-weight: 600; color: var(--verde-folha); margin: 10px 0 0; }
+.presentes-card__copy-feedback {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--verde-folha);
+  margin: 10px 0 0;
+  text-align: center;
+}
 .presentes-card__copy-feedback[hidden] { display: none; }
+
+.presentes-card__qr-box {
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  text-align: center;
+}
+.presentes-card__qr-title {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+.presentes-card__qr {
+  max-width: 170px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.presentes-card__qr svg { display: block; width: 100%; height: auto; }
 
 .presentear-floater {
   position: fixed;
@@ -1008,6 +1068,7 @@ a:hover { color: var(--vermelho-flor); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: var(--font-body);
+  border-radius: 999px;
   box-shadow: 0 4px 18px rgba(238, 39, 55, 0.35);
   transition: background 0.2s ease, transform 0.15s ease;
 }
@@ -1430,10 +1491,27 @@ a:hover { color: var(--vermelho-flor); }
   .lightbox__nav--prev { left: 4px; width: 40px; height: 40px; font-size: 26px; }
   .lightbox__nav--next { right: 4px; width: 40px; height: 40px; font-size: 26px; }
   .lightbox__close { top: -38px; right: 0; font-size: 30px; }
-  .balsa-links-grid { grid-template-columns: 1fr; gap: 16px; }
-  .balsa-tips-grid { grid-template-columns: 1fr; gap: 20px; }
-  .balsa-tips-section { padding: 24px 20px; }
-  .balsa-card { padding: 28px 20px; }
+  /* Balsa mobile */
+  .balsa-main-grid { grid-template-columns: 1fr; gap: 20px; margin-bottom: 24px; }
+  .balsa-card { padding: 24px 20px; }
+  .balsa-card__title { font-size: 21px; margin-bottom: 12px; }
+  .balsa-card__text { font-size: 14px; margin-bottom: 16px; }
+  .balsa-card__list { gap: 12px; margin-bottom: 20px; }
+  .balsa-card__list li { font-size: 13.5px; line-height: 1.55; padding-left: 20px; }
+  .balsa-card__list li::before { left: 4px; }
+  .balsa-btn { width: 100%; justify-content: center; padding: 15px 20px; }
+  .balsa-links-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+  .balsa-link-card { padding: 22px 18px; }
+  .balsa-link-card__title { font-size: 18px; margin-bottom: 6px; }
+  .balsa-link-card__desc { font-size: 13px; margin-bottom: 14px; }
+  .balsa-link-card__action { font-size: 12px; font-weight: 600; }
+  .balsa-tips-section { padding: 22px 18px; }
+  .balsa-tips-title { font-size: 19px; line-height: 1.35; margin-bottom: 16px; gap: 8px; }
+  .balsa-tips-grid { grid-template-columns: 1fr; gap: 16px; }
+  .balsa-tip-item h4 { font-size: 16px; margin-bottom: 6px; }
+  .balsa-tip-item p { font-size: 13px; line-height: 1.6; }
+
+  /* Presentes mobile */
   .presentes-grid { grid-template-columns: 1fr; gap: 24px; }
   .presentes-hero { grid-template-columns: 1fr; margin-top: 32px; }
   .presentes-hero__photo,
@@ -1448,27 +1526,90 @@ a:hover { color: var(--vermelho-flor); }
   .presentes-card__chips,
   .presentes-hero .presentes-card__chips {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px 10px;
-    margin-top: 12px;
+    gap: 16px 10px;
+    margin-top: 16px;
+    margin-bottom: 8px;
   }
   .presentes-card__chip {
-    padding: 12px 8px;
+    padding: 12px 6px;
     font-size: 13.5px;
-    min-height: 46px;
+    min-height: 48px;
+    border-radius: 4px;
+  }
+  .presentes-card__chip.is-suggested::before {
+    top: -9px;
+    right: 6px;
+    font-size: 8.5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    z-index: 2;
   }
   .presentes-card__cta {
     padding: 16px 20px;
     font-size: 13.5px;
+    width: 100%;
+  }
+  .presentes-card__copy-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .presentes-card__copy-btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 13px;
   }
   .presentes-card__photo,
   .presentes-card__photo img {
     aspect-ratio: 16 / 10;
   }
   .presentes-progress { max-width: none; }
-  .hospedagem-highlight { padding: 36px 20px; }
-  .hospedagem-highlight__name { font-size: 26px; }
-  .hospedagem-highlight__actions { flex-direction: column; }
-  .hospedagem-btn { width: 100%; justify-content: center; }
+  .presentear-floater {
+    right: 16px;
+    bottom: 16px;
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+
+  /* Hospedagem mobile */
+  .hospedagem-highlight { padding: 32px 20px; margin-bottom: 40px; }
+  .hospedagem-highlight__name { font-size: 24px; }
+  .hospedagem-highlight__tagline { font-size: 13px; margin-bottom: 16px; }
+  .hospedagem-highlight__desc { font-size: 14px; line-height: 1.65; margin-bottom: 20px; }
+  .hospedagem-highlight__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.12);
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .hospedagem-highlight__actions { flex-direction: column; width: 100%; gap: 12px; }
+  .hospedagem-btn { width: 100%; justify-content: center; padding: 14px 16px; font-size: 12px; text-align: center; }
+  .hospedagem-grid-label { font-size: 20px; margin: 0 auto 24px; }
+  .hospedagem-grid { grid-template-columns: 1fr; gap: 20px; }
+  .hospedagem-card { padding: 24px 20px; }
+  .hospedagem-card__body h3 { font-size: 20px; margin-bottom: 8px; }
+  .hospedagem-card__body p { font-size: 13.5px; margin-bottom: 14px; }
+  .hospedagem-card__meta { gap: 6px; padding-top: 12px; }
+  .hospedagem-card__distance { font-size: 12px; }
+  .hospedagem-card__price { font-size: 12px; }
+  .hospedagem-card__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 16px;
+    margin-top: 14px;
+    border: 1px solid var(--vermelho-flor);
+    border-radius: 2px;
+    text-align: center;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+
   .section { padding: 90px 20px; }
   .nav { padding: 16px 20px; }
   .nav__links { gap: 14px; }

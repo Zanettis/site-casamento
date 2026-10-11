@@ -511,7 +511,7 @@
         titulo: "Semana em Suíte Master com Vista para o Pacífico",
         descricao: "Nossa estadia completa em suíte privativa de frente para o mar aberto, com piscina privativa, mordomia e vista cinematográfica para o pôr do sol de Puerto Escondido.",
         tipo: "flexivel",
-        imagem: null,
+        imagem: "assets/images/presente-suite-master.jpg",
         valoresSugeridos: [1200, 2500, 5000, 7500],
         valorSugeridoIndex: 2,
         valorMinimo: 250,

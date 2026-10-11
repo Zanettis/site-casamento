@@ -537,7 +537,7 @@
         titulo: "Tarde na Casa Azul de Frida Kahlo & Coyoacán",
         descricao: "Passeio cultural pelas ruas floridas e charmosas de Coyoacán, visita à icônica Casa Azul de Frida Kahlo e parada para churros tradicionais e café.",
         tipo: "flexivel",
-        imagem: null,
+        imagem: "assets/images/presente-frida-coyoacan.jpg",
         valoresSugeridos: [200, 360, 580, 900],
         valorSugeridoIndex: 1,
         valorMinimo: 50,

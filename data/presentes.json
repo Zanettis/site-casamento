@@ -52,7 +52,7 @@
       "titulo": "Passeio de Barco & Snorkel no Pacífico",
       "descricao": "Um dia navegando pela deslumbrante costa de Puerto Escondido, com snorkel nas enseadas de corais e observação de golfinhos e vida marinha.",
       "tipo": "flexivel",
-      "imagem": null,
+      "imagem": "assets/images/presente-barco-snorkel.jpg",
       "valoresSugeridos": [200, 380, 600, 950],
       "valorSugeridoIndex": 1,
       "valorMinimo": 50,

@@ -302,6 +302,9 @@ a:hover { color: var(--vermelho-flor); }
 .story-order-1 { order: 1; }
 .story-order-2 { order: 2; }
 
+.story-block__eyebrow {
+  margin-bottom: 8px;
+}
 .story-block__title {
   font-family: var(--font-serif);
   font-weight: 600;
@@ -314,6 +317,9 @@ a:hover { color: var(--vermelho-flor); }
   line-height: 1.85;
   color: var(--ink-soft);
   margin: 0;
+}
+.story-block__text + .story-block__text {
+  margin-top: 14px;
 }
 
 .story-countdown {

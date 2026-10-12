@@ -563,7 +563,7 @@
         titulo: "Hierve el Agua & Degustação em Palenque de Mezcal",
         descricao: "Banho nas piscinas naturais infinitas de calcário com vista panorâmica para as montanhas e visita a uma destilaria artesanal com degustação de mezcal.",
         tipo: "flexivel",
-        imagem: null,
+        imagem: "assets/images/presente-hierve-el-agua.jpg",
         valoresSugeridos: [250, 450, 750, 1200],
         valorSugeridoIndex: 1,
         valorMinimo: 50,

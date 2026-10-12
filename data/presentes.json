@@ -78,7 +78,7 @@
       "titulo": "Tour Gastronômico de Moles & Mercados de Oaxaca",
       "descricao": "Explorar a capital gastronômica do México: provar os lendários moles oaxaquenhos, tlayudas crocantes e o tradicional chocolate artesanal no Mercado 20 de Noviembre.",
       "tipo": "flexivel",
-      "imagem": null,
+      "imagem": "assets/images/presente-tour-oaxaca.jpg",
       "valoresSugeridos": [250, 420, 680, 1100],
       "valorSugeridoIndex": 1,
       "valorMinimo": 50,

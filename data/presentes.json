@@ -117,7 +117,7 @@
       "titulo": "Jantar a Dois no Pujol — Alta Gastronomia Mexicana",
       "descricao": "Uma noite memorável a dois no aclamado Pujol, considerado um dos melhores restaurantes do mundo, degustando o famoso Mole Madre e menu degustação contemporâneo.",
       "tipo": "flexivel",
-      "imagem": null,
+      "imagem": "assets/images/presente-jantar-pujol.jpg",
       "valoresSugeridos": [250, 440, 750, 1300],
       "valorSugeridoIndex": 1,
       "valorMinimo": 50,

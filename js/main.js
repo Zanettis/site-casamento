@@ -825,9 +825,9 @@
 
       lightboxImg.src = item.src;
       lightboxImg.alt = item.alt;
-      lightboxTitle.textContent = item.title;
-      lightboxSubtitle.textContent = item.subtitle;
-      lightboxCounter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
+      if (lightboxTitle) lightboxTitle.textContent = item.title;
+      if (lightboxSubtitle) lightboxSubtitle.textContent = item.subtitle;
+      if (lightboxCounter) lightboxCounter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
     };
 
     const abrirLightbox = (idx) => {

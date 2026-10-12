@@ -576,7 +576,7 @@
         titulo: "Soltura de Tartaruguinhas Marinhas no Pacífico",
         descricao: "Participar de um projeto de preservação ecológica ajudando filhotinhos de tartaruga marinha a darem seus primeiros passos rumo ao mar ao entardecer.",
         tipo: "flexivel",
-        imagem: null,
+        imagem: "assets/images/presente-tartarugas.jpg",
         valoresSugeridos: [180, 350, 550, 850],
         valorSugeridoIndex: 1,
         valorMinimo: 50,

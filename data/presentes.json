@@ -26,7 +26,7 @@
       "titulo": "Passagens Aéreas dos Noivos — Voo México",
       "descricao": "As passagens que dão asas à nossa lua de mel: o embarque rumo ao México logo após o grande dia em Ilhabela, iniciando a viagem da nossa vida com todo o conforto e carinho.",
       "tipo": "flexivel",
-      "imagem": null,
+      "imagem": "assets/images/presente-passagens-mexico.jpg",
       "valoresSugeridos": [1000, 2500, 5000, 8000],
       "valorSugeridoIndex": 2,
       "valorMinimo": 200,

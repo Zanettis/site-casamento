@@ -96,12 +96,32 @@
   // ---------- RSVP: attending toggle & field visibility ----------
   const attendButtons = document.querySelectorAll(".attend-toggle__btn");
   const attendingInput = document.getElementById("rsvp-attending");
+  const phoneInput = document.getElementById("rsvp-phone");
   const fieldGuests = document.getElementById("rsvp-field-guests");
   const guestsSelect = document.getElementById("rsvp-guests");
   const fieldCompanions = document.getElementById("rsvp-field-companions");
   const companionsList = document.getElementById("rsvp-companions-list");
   const fieldLodging = document.getElementById("rsvp-field-lodging");
   const rsvpSubmitBtn = document.getElementById("rsvp-submit-btn");
+
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (e) => {
+      const raw = e.target.value;
+      if (raw.trim().startsWith("+")) return;
+      const digits = raw.replace(/\D/g, "").slice(0, 11);
+      if (digits.length === 0) {
+        e.target.value = "";
+      } else if (digits.length <= 2) {
+        e.target.value = `(${digits}`;
+      } else if (digits.length <= 6) {
+        e.target.value = `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+      } else if (digits.length <= 10) {
+        e.target.value = `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+      } else {
+        e.target.value = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+      }
+    });
+  }
 
   const updateCompanionFields = () => {
     if (!fieldCompanions || !companionsList) return;
@@ -220,21 +240,20 @@
       }
 
       const companionNames = isAttending
-        ? companionInputs.map((inp) => inp.value.trim()).filter(Boolean)
+        ? companionInputs.map((inp) => inp.value.trim())
         : [];
 
       const lodgingInput = document.getElementById("rsvp-lodging");
       const values = {
         name: document.getElementById("rsvp-name").value.trim(),
         email: document.getElementById("rsvp-email").value.trim(),
+        phone: phoneInput ? phoneInput.value.trim() : "",
         attending: isAttending ? "Sim, estarei lá" : "Não poderei ir",
-        guests: isAttending
-          ? companionNames.length > 0
-            ? `${guestCount} (${companionNames.join(", ")})`
-            : String(guestCount)
-          : "0",
-        companions: isAttending && companionNames.length > 0 ? companionNames.join(", ") : "-",
-        lodging: isAttending && lodgingInput ? lodgingInput.value.trim() : "-",
+        guests: isAttending ? String(guestCount) : "0",
+        companion1: isAttending && companionNames[0] ? companionNames[0] : "-",
+        companion2: isAttending && companionNames[1] ? companionNames[1] : "-",
+        companion3: isAttending && companionNames[2] ? companionNames[2] : "-",
+        lodging: isAttending && lodgingInput && lodgingInput.value.trim() ? lodgingInput.value.trim() : "-",
         message: document.getElementById("rsvp-message").value.trim(),
       };
 

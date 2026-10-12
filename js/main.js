@@ -202,7 +202,7 @@
 
   // ---------- RSVP: submit to Google Sheets (via Apps Script) ----------
   const GOOGLE_SHEETS_CONFIG = {
-    scriptUrl: "https://script.google.com/macros/s/AKfycbx20Alb36RKCwOZRG1ic_kIJr8U1D8wMT2py-UFHUddBqGThysm-Dr4Tpvki3IadGjMow/exec",
+    scriptUrl: "https://script.google.com/macros/s/AKfycbx2e1SZDW02XxQ9J3FyyskYXxC-vJ3AVoGX9wqndsIJvFf73Yy5P_FKKp1jX9KouB7U1w/exec",
   };
 
   const rsvpForm = document.getElementById("rsvp-form");

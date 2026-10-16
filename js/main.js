@@ -294,66 +294,12 @@
   }
 
   // ---------- Presentes: contribuição via Pix ----------
-  //
-  // TROCAR AQUI: preencha com a chave Pix real de vocês antes de publicar o
-  // site. Recomendamos usar uma chave aleatória (gerada no próprio app do
-  // banco) em vez do CPF, já que essa chave fica visível no código-fonte
-  // público do site. "nome" e "cidade" seguem o padrão do Banco Central:
-  // sem acentos, nome com até 25 caracteres, cidade com até 15 caracteres.
   const PIX_CONFIG = {
-    chave: "11910612305",
-    nome: "Marina e Pedro",
-    cidade: "ILHABELA",
-  };
-
-  const normalizePixText = (str, maxLen) =>
-    (str || "")
-      .normalize("NFD")
-      .replace(/[^\x20-\x7E]/g, "")
-      .slice(0, maxLen)
-      .trim();
-
-  const pixTlv = (id, value) =>
-    `${id}${String(value.length).padStart(2, "0")}${value}`;
-
-  const pixCrc16 = (payload) => {
-    let crc = 0xffff;
-    for (let i = 0; i < payload.length; i++) {
-      crc ^= payload.charCodeAt(i) << 8;
-      for (let j = 0; j < 8; j++) {
-        crc =
-          (crc & 0x8000) !== 0 ? ((crc << 1) ^ 0x1021) & 0xffff : (crc << 1) & 0xffff;
-      }
-    }
-    return crc.toString(16).toUpperCase().padStart(4, "0");
-  };
-
-  const buildPixPayload = (valor, descricao) => {
-    const nome = normalizePixText(PIX_CONFIG.nome, 25) || "RECEBEDOR";
-    const cidade = normalizePixText(PIX_CONFIG.cidade, 15) || "CIDADE";
-    const info = normalizePixText(descricao, 35);
-
-    const merchantAccount =
-      pixTlv("00", "br.gov.bcb.pix") +
-      pixTlv("01", PIX_CONFIG.chave) +
-      (info ? pixTlv("02", info) : "");
-
-    const additionalData = pixTlv("05", "***");
-
-    const payload =
-      pixTlv("00", "01") +
-      pixTlv("01", "11") +
-      pixTlv("26", merchantAccount) +
-      pixTlv("52", "0000") +
-      pixTlv("53", "986") +
-      pixTlv("54", Number(valor).toFixed(2)) +
-      pixTlv("58", "BR") +
-      pixTlv("59", nome) +
-      pixTlv("60", cidade) +
-      pixTlv("62", additionalData) +
-      "6304";
-
-    return payload + pixCrc16(payload);
+    chave: "16992564008",
+    chaveFormatada: "(16) 99256-4008",
+    titular: "Marina",
+    whatsappMarina: "5516992564008",
+    whatsappPedro: "5511910612305",
   };
 
   const formatBRL = (valor) =>
@@ -435,12 +381,13 @@
     const customInput = card.querySelector(".presentes-card__custom input");
     const cta = card.querySelector(".presentes-card__cta");
     const pixWrap = card.querySelector(".presentes-card__pix");
-    const qrWrap = card.querySelector(".presentes-card__qr");
     const amountLabel = card.querySelector(".presentes-card__amount-label");
     const thanksEl = card.querySelector(".presentes-card__thanks");
     const copyInput = card.querySelector(".presentes-card__copy-input");
     const copyBtn = card.querySelector(".presentes-card__copy-btn");
     const copyFeedback = card.querySelector(".presentes-card__copy-feedback");
+    const waMarinaBtn = card.querySelector(".presentes-card__wa-btn--marina");
+    const waPedroBtn = card.querySelector(".presentes-card__wa-btn--pedro");
 
     let valorEscolhido = presente.tipo === "fixo" ? presente.valor : null;
 
@@ -505,56 +452,67 @@
       cta.classList.remove("presentes-card__cta--error");
       atualizarRotuloCta();
 
-      const payload = buildPixPayload(valorEscolhido, presente.titulo);
-      if (typeof qrcode === "function") {
-        try {
-          const qr = qrcode(0, "M");
-          qr.addData(payload);
-          qr.make();
-          qrWrap.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 2, scalable: true });
-        } catch (_) {
-          qrWrap.innerHTML = "";
-        }
-      } else {
-        qrWrap.innerHTML = "";
-      }
-
       amountLabel.textContent = `Valor: ${formatBRL(valorEscolhido)}`;
       if (thanksEl) thanksEl.textContent = gerarAgradecimento(presente);
-      copyInput.value = payload;
+      if (copyInput) copyInput.value = PIX_CONFIG.chaveFormatada;
       copyFeedback.hidden = true;
+
+      const valorTexto = formatBRL(valorEscolhido);
+      const msgMarina = encodeURIComponent(
+        `Oi, Marina! Acabei de enviar o presente "${presente.titulo}" (${valorTexto}) pelo Pix! Segue o comprovante:`
+      );
+      const msgPedro = encodeURIComponent(
+        `Oi, Pedro! Acabei de enviar o presente "${presente.titulo}" (${valorTexto}) pelo Pix! Segue o comprovante:`
+      );
+
+      if (waMarinaBtn) {
+        waMarinaBtn.href = `https://wa.me/${PIX_CONFIG.whatsappMarina}?text=${msgMarina}`;
+      }
+      if (waPedroBtn) {
+        waPedroBtn.href = `https://wa.me/${PIX_CONFIG.whatsappPedro}?text=${msgPedro}`;
+      }
+
       pixWrap.hidden = false;
       pixWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
 
     copyBtn.addEventListener("click", () => {
-      copyInput.select();
-      copyInput.setSelectionRange(0, 99999);
-
       const setSuccess = () => {
-        copyFeedback.textContent = "✓ Código copiado com sucesso! Cole no app do seu banco.";
+        copyFeedback.textContent = "✓ Chave Pix copiada com sucesso! Cole no app do seu banco.";
         copyFeedback.hidden = false;
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard
-          .writeText(copyInput.value)
+          .writeText(PIX_CONFIG.chave)
           .then(setSuccess)
           .catch(() => {
-            try {
-              document.execCommand("copy");
-              setSuccess();
-            } catch (_) {
-              copyFeedback.textContent = "Selecione o código acima e copie manualmente.";
-              copyFeedback.hidden = false;
+            if (copyInput) {
+              copyInput.value = PIX_CONFIG.chave;
+              copyInput.select();
+              copyInput.setSelectionRange(0, 99999);
+              try {
+                document.execCommand("copy");
+                copyInput.value = PIX_CONFIG.chaveFormatada;
+                setSuccess();
+              } catch (_) {
+                copyInput.value = PIX_CONFIG.chaveFormatada;
+                copyFeedback.textContent = `Chave Pix: ${PIX_CONFIG.chave}`;
+                copyFeedback.hidden = false;
+              }
             }
           });
-      } else {
+      } else if (copyInput) {
+        copyInput.value = PIX_CONFIG.chave;
+        copyInput.select();
+        copyInput.setSelectionRange(0, 99999);
         try {
           document.execCommand("copy");
+          copyInput.value = PIX_CONFIG.chaveFormatada;
           setSuccess();
         } catch (_) {
-          copyFeedback.textContent = "Selecione o código acima e copie manualmente.";
+          copyInput.value = PIX_CONFIG.chaveFormatada;
+          copyFeedback.textContent = `Chave Pix: ${PIX_CONFIG.chave}`;
           copyFeedback.hidden = false;
         }
       }

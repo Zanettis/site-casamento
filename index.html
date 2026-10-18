@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=3.2">
+<link rel="stylesheet" href="css/style.css?v=3.3">
 </head>
 <body>
 
@@ -229,9 +229,18 @@
       <h2 class="section__title reveal">Lista de presentes</h2>
       <p class="section__text reveal">Sua presença já é o nosso maior presente! Se quiser nos presentear, escolhemos transformar esse carinho em momentos inesquecíveis da nossa lua de mel pelo México — entre a energia da Cidade do México, os sabores e tradições de Oaxaca e o mar de Puerto Escondido. Toda contribuição vai direto via Pix, 100% sem taxas de intermediários.</p>
 
-      <div class="presentes-progress reveal" id="presentes-progress" hidden>
-        <div class="presentes-progress__bar"><div class="presentes-progress__fill"></div></div>
-        <p class="presentes-progress__text"></p>
+      <div class="presentes-progress" id="presentes-progress">
+        <div class="presentes-progress__header">
+          <span class="presentes-progress__current"><strong>R$ 2.879,00</strong> arrecadados</span>
+          <span class="presentes-progress__meta">Meta: <strong>R$ 50.000,00</strong></span>
+        </div>
+        <div class="presentes-progress__bar">
+          <div class="presentes-progress__fill" style="width: 5.8%;"></div>
+        </div>
+        <div class="presentes-progress__footer">
+          <span class="presentes-progress__pct">5,8% da meta alcançada</span>
+          <span class="presentes-progress__sub">Obrigado pelo carinho! ❤️</span>
+        </div>
       </div>
     </div>
 
@@ -622,6 +631,6 @@
 
 <a href="#presentes" class="presentear-floater" id="presentear-floater" hidden>Presentear</a>
 
-<script src="js/main.js?v=3.5"></script>
+<script src="js/main.js?v=3.6"></script>
 </body>
 </html>

@@ -343,10 +343,23 @@
       100,
       Math.max(0, (progresso.arrecadado / progresso.meta) * 100)
     );
+    const pctFormatado = pct.toLocaleString("pt-BR", {
+      minimumFractionDigits: pct % 1 === 0 ? 0 : 1,
+      maximumFractionDigits: 1,
+    });
 
-    presentesProgress.querySelector(".presentes-progress__fill").style.width = `${pct}%`;
-    presentesProgress.querySelector(".presentes-progress__text").textContent =
-      `${formatBRL(progresso.arrecadado)} arrecadados de ${formatBRL(progresso.meta)}`;
+    const fillEl = presentesProgress.querySelector(".presentes-progress__fill");
+    if (fillEl) fillEl.style.width = `${pct}%`;
+
+    const currentEl = presentesProgress.querySelector(".presentes-progress__current");
+    if (currentEl) currentEl.innerHTML = `<strong>${formatBRL(progresso.arrecadado)}</strong> arrecadados`;
+
+    const metaEl = presentesProgress.querySelector(".presentes-progress__meta");
+    if (metaEl) metaEl.innerHTML = `Meta: <strong>${formatBRL(progresso.meta)}</strong>`;
+
+    const pctEl = presentesProgress.querySelector(".presentes-progress__pct");
+    if (pctEl) pctEl.textContent = `${pctFormatado}% da meta alcançada`;
+
     presentesProgress.hidden = false;
   };
 
@@ -540,7 +553,7 @@
     });
 
   const FALLBACK_PRESENTES = {
-    progresso: { arrecadado: 0, meta: 50000, atualizadoEm: "2026-10-07" },
+    progresso: { arrecadado: 2879, meta: 50000, atualizadoEm: "2026-10-18" },
     presentes: [
       {
         id: "estadia-puerto-escondido",

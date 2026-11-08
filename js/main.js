@@ -553,7 +553,7 @@
     });
 
   const FALLBACK_PRESENTES = {
-    progresso: { arrecadado: 2879, meta: 50000, atualizadoEm: "2026-10-18" },
+    progresso: { arrecadado: 3579, meta: 50000, atualizadoEm: "2026-11-08" },
     presentes: [
       {
         id: "estadia-puerto-escondido",
